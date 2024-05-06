@@ -24,6 +24,8 @@ public class BankManagementLogin implements ActionListener {
     
     BankManagementLogin(){
         
+        //Background
+        
         log.setSize (480,750);
         log.setLayout(null);
         log.setDefaultCloseOperation(log.EXIT_ON_CLOSE);
