@@ -91,15 +91,15 @@ public class UserLogin implements ActionListener {
 
     }
     @Override
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == btnLogin){
+    public void actionPerformed(ActionEvent Login){
+        if(Login.getSource() == btnLogin){
            String username = txtfldUsername.getText();
            String password = psswrdfldPassword.getText();
            lblLoginResults.setText("Login Successful!");
-        }else if(e.getSource() == btnReset){
+        }else if(Login.getSource() == btnReset){
            txtfldUsername.setText("");
            psswrdfldPassword.setText("");
-           lblLoginResults.setText("");         
+           lblLoginResults.setText("");     
         }      
     }
 }
