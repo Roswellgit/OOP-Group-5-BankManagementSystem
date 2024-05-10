@@ -23,7 +23,7 @@ public class UserLogin implements ActionListener {
     f.getContentPane().setBackground(Color.LIGHT_GRAY);
     
     //bank logo
-    logo = new ImageIcon("C:\\Users\\myk_b\\OneDrive - JUOFDWSPR\\Pictures\\Saved Pictures\\dc emotes\\frogluv2.png");
+    logo = new ImageIcon("‪E:/Users/malen/Pictures/Lance/jenshin/fave/20240507175307.png");
     logoLabel = new JLabel(logo);
     logoLabel.setBounds(10,10,100,100);
     
