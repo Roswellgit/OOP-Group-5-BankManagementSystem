@@ -111,6 +111,7 @@ public class BankManagementCredentials {
         btnReset = new JButton ("Reset");
         btnReset.setBounds (70, 550, 140, 40);
         btnReset.setFont(new Font("Arial", Font.PLAIN, 18));
+        btnNextPage.setBackground(new Color(155,155,155));
         
         f.add(header);
         f.add(footer);
