@@ -1,4 +1,3 @@
-package bankmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,8 +6,8 @@ import java.awt.*;
 public class AccInterfaceUI extends JFrame  {
     
     private JFrame Acc;
-    private ImageIcon BgColor, iconImage;
-    private JPanel panel1;
+    private ImageIcon BgColor, iconImage, Depic;
+    private JPanel depanel;
     private JLabel label1, Depo;
     
     public AccInterfaceUI() {
@@ -22,9 +21,9 @@ public class AccInterfaceUI extends JFrame  {
         // logo
         BgColor = new ImageIcon("C:\\Users\\mhace\\OneDrive\\Desktop\\OOP\\12.jpg");
         Acc.setIconImage(BgColor.getImage());
-        Acc.setLayout(new BorderLayout());
         Acc.getContentPane().setBackground(new Color(169, 217, 186));
-    
+        Acc.setLayout(new BorderLayout());
+        
         //label "bank of bsit"
         ImageIcon iconImage = new ImageIcon("C:\\Users\\mhace\\OneDrive\\Desktop\\OOP\\logo.png");
         Image sizeImage = iconImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -36,21 +35,26 @@ public class AccInterfaceUI extends JFrame  {
         label1.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
         label1.setIcon(image);
         Acc.add(label1, BorderLayout.NORTH);
-    
-        // panel at the bg of the icons
-        panel1 = new JPanel();
-        panel1.setBackground(new Color(233, 227, 200));
-        panel1.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
-        Acc.add(panel1, BorderLayout.CENTER);
+      
+        //Deposit Click Panel!!
+        depanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        depanel.setBackground(new Color(233, 227, 200));
+        depanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        Acc.add(depanel, BorderLayout.CENTER);
         
-        //Deposit Click!!
         Depo = new JLabel("Make A Deposit");
-        Depo.setBounds(200, 200, 100, 100);
-        Depo.setPreferredSize(new Dimension(100, 50)); 
-        Depo.setBackground(Color.blue);
+        Depo.setForeground(Color.BLACK);
+        Depo.setPreferredSize(new Dimension(150, 50));
+        Depo.setBackground(new Color(233, 227, 200));
+        Depo.setHorizontalAlignment(JLabel.CENTER);
         Depo.setOpaque(true);
         Depo.addMouseListener(new Deposit());
-        panel1.add(Depo);
+        
+        ImageIcon depImage = new ImageIcon("C:\\Users\\mhace\\OneDrive\\Desktop\\OOP\\dep.png");
+        Image picsize = depImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        ImageIcon Depic = new ImageIcon(picsize);
+        Depo.setIcon(Depic);
+        depanel.add(Depo, BorderLayout.NORTH);
         
         
         Acc.setVisible(true);
