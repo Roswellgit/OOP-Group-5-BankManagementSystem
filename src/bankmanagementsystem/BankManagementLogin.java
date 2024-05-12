@@ -67,7 +67,7 @@ public class BankManagementLogin implements ActionListener {
             String username = inp.getText();
             String password = pa.getText();
             
-            logres.setText("Tangina mababaliw nako");
+            logres.setText("Hello");
         }
     }
     
