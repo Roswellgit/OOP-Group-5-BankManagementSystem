@@ -1,3 +1,4 @@
+package bankmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,9 +8,9 @@ public class AccInterfaceUI extends JFrame  {
     
     private JFrame Acc;
     private ImageIcon BgColor, iconImage, Depic;
-    private JPanel depanel;
+    private JPanel depanel, panel2;
     private JLabel label1, Depo;
-    private Jpanel panel2,
+
     
     public AccInterfaceUI() {
         //frame
@@ -58,10 +59,10 @@ public class AccInterfaceUI extends JFrame  {
         depanel.add(Depo, BorderLayout.NORTH);
         
         panel2 = new JPanel();
-    depanel.add(panel2, BorderLayout.CENTER);
-    panel2.setBackground(new Color(220, 190, 200));
-    panel2.setPreferredSize(new Dimension(670,350));
-    Acc.setVisible(true);
+        depanel.add(panel2, BorderLayout.CENTER);
+        panel2.setBackground(new Color(220, 190, 200));
+        panel2.setPreferredSize(new Dimension(670,350));
+        Acc.setVisible(true);
         
         Acc.setVisible(true);
     }
