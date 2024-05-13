@@ -9,6 +9,7 @@ public class AccInterfaceUI extends JFrame  {
     private ImageIcon BgColor, iconImage, Depic;
     private JPanel depanel;
     private JLabel label1, Depo;
+    private Jpanel panel2,
     
     public AccInterfaceUI() {
         //frame
@@ -56,6 +57,11 @@ public class AccInterfaceUI extends JFrame  {
         Depo.setIcon(Depic);
         depanel.add(Depo, BorderLayout.NORTH);
         
+        panel2 = new JPanel();
+    depanel.add(panel2, BorderLayout.CENTER);
+    panel2.setBackground(new Color(220, 190, 200));
+    panel2.setPreferredSize(new Dimension(670,350));
+    Acc.setVisible(true);
         
         Acc.setVisible(true);
     }
