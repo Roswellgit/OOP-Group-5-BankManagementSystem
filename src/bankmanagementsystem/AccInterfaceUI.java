@@ -38,31 +38,41 @@ public class AccInterfaceUI extends JFrame  {
         label1.setIcon(image);
         Acc.add(label1, BorderLayout.NORTH);
       
-        //Deposit Click Panel!!
-        depanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        depanel.setBackground(new Color(233, 227, 200));
-        depanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
-        Acc.add(depanel, BorderLayout.CENTER);
-        
-        Depo = new JLabel("Make A Deposit");
-        Depo.setForeground(Color.BLACK);
-        Depo.setPreferredSize(new Dimension(150, 50));
-        Depo.setBackground(new Color(233, 227, 200));
-        Depo.setHorizontalAlignment(JLabel.CENTER);
-        Depo.setOpaque(true);
-        Depo.addMouseListener(new Deposit());
-        
-        ImageIcon depImage = new ImageIcon("C:\\Users\\mhace\\OneDrive\\Desktop\\OOP\\dep.png");
-        Image picsize = depImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        ImageIcon Depic = new ImageIcon(picsize);
-        Depo.setIcon(Depic);
-        depanel.add(Depo, BorderLayout.NORTH);
-        
-        panel2 = new JPanel();
-        depanel.add(panel2, BorderLayout.CENTER);
-        panel2.setBackground(new Color(220, 190, 200));
-        panel2.setPreferredSize(new Dimension(670,350));
-        Acc.setVisible(true);
+      
+        //buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        buttonPanel.setBackground(new Color(233, 227, 200));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        Acc.add(buttonPanel, BorderLayout.CENTER);
+
+//Withdraw
+        JButton withdrawButton = new JButton();
+        ImageIcon withdrawIcon = new ImageIcon("C:\\Users\\Sarvin\\Downloads\\withdraw-money-icon-free-vector-removebg-preview.png");
+        Image withdrawScaledImage = withdrawIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        withdrawButton.setIcon(new ImageIcon(withdrawScaledImage));
+        buttonPanel.add(withdrawButton); // Add "Withdraw" button to the panel
+
+        //Deposit
+        JButton depoButton = new JButton();
+        ImageIcon depositIcon = new ImageIcon("C:\\Users\\Sarvin\\Downloads\\images-removebg-preview (1).png");
+        Image depositScaledImage = depositIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        depoButton.setIcon(new ImageIcon(depositScaledImage));
+        buttonPanel.add(depoButton); // Add "Deposit" button to the panel
+
+        //Transactions
+        JButton transButton = new JButton();
+        ImageIcon transIcon = new ImageIcon("C:\\Users\\Sarvin\\Downloads\\kisspng-checks-bank-account-clip-art-transaction-account-5cf31ba193e545.0629072015594361936058-removebg-preview (1).png");
+        Image transScaledImage = transIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        transButton.setIcon(new ImageIcon(transScaledImage));
+        buttonPanel.add(transButton);
+
+        //Pin
+        JButton pinButton = new JButton();
+        ImageIcon pinIcon = new ImageIcon("C:\\Users\\Sarvin\\Downloads\\istockphoto-927672636-612x612-removebg-preview.png");
+        Image pinScaledImage = pinIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        pinButton.setIcon(new ImageIcon(pinScaledImage));
+        buttonPanel.add(pinButton);
+
         
         Acc.setVisible(true);
     }
