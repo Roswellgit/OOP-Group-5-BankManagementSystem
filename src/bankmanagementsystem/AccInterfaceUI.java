@@ -22,7 +22,7 @@ public class AccInterfaceUI extends JFrame  {
         Acc.setSize(600, 480);
         
         // logo
-        BgColor = new ImageIcon("C:\\Users\\mhace\\OneDrive\\Desktop\\OOP\\12.jpg");
+        BgColor = new ImageIcon("logo.png");
         Acc.setIconImage(BgColor.getImage());
         Acc.getContentPane().setBackground(new Color(100,50,78));
         Acc.setLayout(new BorderLayout());
