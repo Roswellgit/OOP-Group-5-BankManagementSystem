@@ -53,7 +53,7 @@ public class Login {
     Acc.setVisible(true);
     
     
-    
+    //inner panel
     panel2 = new JPanel();
     panel1.add(panel2, BorderLayout.CENTER);
     panel2.setBackground(new Color(220, 190, 200));
