@@ -95,16 +95,16 @@ public class AccInterfaceUI extends JFrame  {
         
         //Transactions
         transBtn = new JButton();
-        ImageIcon transIcon = new ImageIcon("Transfer.png");
-        Image transScaledImage = transIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        transBtn .setIcon(new ImageIcon(transScaledImage));
+        ImageIcon transImage = new ImageIcon("Transfer.png");
+        Image transize = transImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        transBtn .setIcon(new ImageIcon(transize));
         transBtn.setBounds(275, 150, 115, 120);
         
         //Change Pin
         pinBtn = new JButton();
-        ImageIcon pinIcon = new ImageIcon("Pin.png");
-        Image pinScaledImage = pinIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        pinBtn.setIcon(new ImageIcon(pinScaledImage));
+        ImageIcon pinImage = new ImageIcon("Pin.png");
+        Image pinsize = pinImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        pinBtn.setIcon(new ImageIcon(pinsize));
         pinBtn.setBounds(400, 150, 115, 120);
         
         //Exit
