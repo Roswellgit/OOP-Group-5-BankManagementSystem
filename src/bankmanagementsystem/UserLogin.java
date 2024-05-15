@@ -7,40 +7,41 @@ import javax.swing.*;
 public class UserLogin implements ActionListener {
     
     private JFrame f = new JFrame("BOB - BANK OF BSIT");
-    private JLabel logoLabel, lblTitle, lblUsername, lblPassword, lblLoginResults;
+    private JLabel  lblTitle, lblUsername, lblPassword, lblLoginResults, lbLogo;
     private JTextField txtfldUsername = new JTextField();
     private JPasswordField psswrdfldPassword = new JPasswordField();
     private JButton btnLogin, btnReset;
     private ImageIcon logo;
-    private JPanel design, design2;
+    private JPanel header, footer;
     
     UserLogin(){
     
     //Jframe dimensions & details
-    f.setSize(470, 750);
+    f.setSize(480, 750);
     f.setLayout(null);
     f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
-    f.getContentPane().setBackground(Color.LIGHT_GRAY);
+    f.getContentPane().setBackground(new java.awt.Color(220, 190, 200));
     
     //bank logo
-    logo = new ImageIcon("‪E:/Users/malen/Pictures/Lance/jenshin/fave/20240507175307.png");
-    logoLabel = new JLabel(logo);
-    logoLabel.setBounds(10,10,100,100);
+    logo = new ImageIcon("BlackLogo.png");
+    Image ResizedLogo = logo.getImage().getScaledInstance( 90, 90, Image.SCALE_SMOOTH);
+    ImageIcon FinalLogo = new ImageIcon(ResizedLogo);   
+    lbLogo = new JLabel(FinalLogo);
     
     //color panels design
-    design = new JPanel();
-    design.setBounds(0,0,470,120);
-    design.setBackground(Color.GRAY);
-    
-    design2 = new JPanel();
-    design2.setBounds(0,640,470,80);
-    design2.setBackground(Color.GRAY);
+    header = new JPanel();
+    header.setBackground(new java.awt.Color(100,50,78));
+    header.setBounds(0, 0, 480, 110);
+        
+    footer = new JPanel();
+    footer.setBackground(new java.awt.Color(100,50,78));
+    footer.setBounds(0, 670, 480, 80);
     
     //bank title
     lblTitle = new JLabel("BANK OF BSIT");
-    lblTitle.setFont(new Font("Bookman Old Style", Font.BOLD, 37));
-    lblTitle.setForeground(Color.BLACK);
-    lblTitle.setBounds(100,30,100,250);
+    lblTitle.setForeground(Color.WHITE);
+    lblTitle.setFont(new Font("Courier New", Font.BOLD, 40));
+    lblTitle.setHorizontalAlignment(JLabel.LEFT);
 
     //username & password text labels
     lblUsername = new JLabel("Username:");
@@ -74,10 +75,11 @@ public class UserLogin implements ActionListener {
     lblLoginResults.setBounds(20, 200, 480, 30);
     lblLoginResults.setFont(new Font("Arial", Font.PLAIN, 15));
     
-    design.add(lblTitle);
-    f.add(logoLabel);
-    f.add(design);
-    f.add(design2);
+    header.add(lblTitle, BorderLayout.NORTH);
+    header.add(lbLogo);
+    
+    f.add(header);
+    f.add(footer);
     f.add(lblUsername);
     f.add(lblPassword);
     f.add(txtfldUsername);

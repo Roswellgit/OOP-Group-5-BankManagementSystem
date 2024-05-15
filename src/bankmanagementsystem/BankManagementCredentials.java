@@ -50,10 +50,11 @@ public class BankManagementCredentials {
         
         //bank logo
         Logo = new ImageIcon("BlackLogo.png");
-        Image ResizedLogo = Logo.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
-        ImageIcon FinalLogo = new ImageIcon(ResizedLogo);      
+        Image ResizedLogo = Logo.getImage().getScaledInstance( 90, 90, Image.SCALE_SMOOTH);
+        ImageIcon FinalLogo = new ImageIcon(ResizedLogo);   
         lblLogo = new JLabel(FinalLogo);
-        
+       
+        //bank title
         lblBankName = new JLabel("BANK OF BSIT");
         lblBankName.setForeground(Color.WHITE);
         lblBankName.setFont(new Font("Courier New", Font.BOLD, 40));
@@ -134,9 +135,10 @@ public class BankManagementCredentials {
         f.add(header);
         f.add(footer);
         f.add(tfBlank);
+        
         header.add(lblLogo);
         header.add(lblBankName, BorderLayout.NORTH);
-        header.add(lblBankName);
+        
         f.add(lblInfo);
         f.add(lblLastName);
         f.add(lblFirstName);
