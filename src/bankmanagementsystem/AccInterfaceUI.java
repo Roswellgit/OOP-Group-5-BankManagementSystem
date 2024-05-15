@@ -9,9 +9,10 @@ public class AccInterfaceUI extends JFrame  {
     private JFrame Acc;
     private ImageIcon BgColor, iconImage, Depic, depImage;
     private JPanel panel1, depanel, deposit;
-    private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl;
-    private JTextField tfBlank, AccNametf, AccNumtf, balancetf;
+    private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl,depoLbl ;
+    private JTextField tfBlank, AccNametf, AccNumtf, balancetf,depotf;
     private JButton depoBtn, WdrawBtn, transBtn, pinBtn, ExitBtn;
+   
     
     public AccInterfaceUI() {
         //frame
@@ -19,7 +20,7 @@ public class AccInterfaceUI extends JFrame  {
         Acc.setTitle("BANK MANAGEMENT SYSTEM");
         Acc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Acc.setResizable(false);
-        Acc.setSize(600, 480);
+        Acc.setSize(600, 530);
         
         // logo
         BgColor = new ImageIcon("logo.png");
@@ -41,13 +42,13 @@ public class AccInterfaceUI extends JFrame  {
         //panel at the bg of the icons
         panel1 = new JPanel();
         panel1.setBackground(new Color(100,50,78));
-        panel1.setBounds(50, 50, 500, 350);
+        panel1.setBounds(50, 50, 500, 400);
         Acc.add(panel1, BorderLayout.CENTER); 
         
         depanel = new JPanel();
         depanel.setLayout(null);  
         depanel.setBackground(new Color(220, 190, 200));
-        depanel.setPreferredSize(new Dimension(550, 300));
+        depanel.setPreferredSize(new Dimension(550, 350));
         panel1.add(depanel, BorderLayout.CENTER);
         
         // textfields
@@ -86,6 +87,11 @@ public class AccInterfaceUI extends JFrame  {
         depoBtn.setIcon(new ImageIcon(depsize));
         depoBtn.setBounds(25, 150, 115, 120);  
         
+        depoLbl = new JLabel("DEPOSIT");
+        depoLbl.setBounds(25, 275, 115, 20);
+        depoLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        depoLbl.setFont(new Font("Arial Black", Font.BOLD, 12));
+        
         //Withdraw
         WdrawBtn = new JButton();
         ImageIcon WdraImage = new ImageIcon("Wdraw.png");
@@ -107,11 +113,15 @@ public class AccInterfaceUI extends JFrame  {
         pinBtn.setIcon(new ImageIcon(pinsize));
         pinBtn.setBounds(400, 150, 115, 120);
         
+        
+        
         //Exit
         ExitBtn = new JButton("EXIT");
         ExitBtn.setBounds(400, 275, 100, 20);
         ExitBtn.setFont(new Font("Arial", Font.BOLD, 10));
 
+        
+        
         depanel.add(lblInfo);
         depanel.add(AccNamelbl);
         depanel.add(AccNumlbl);
@@ -120,10 +130,11 @@ public class AccInterfaceUI extends JFrame  {
         depanel.add(balancelbl);
         depanel.add(balancetf);
         depanel.add(depoBtn);
+        depanel.add(depoLbl);
         depanel.add(WdrawBtn);
         depanel.add(transBtn );
         depanel.add(pinBtn);
-        panel1.add(ExitBtn);
+        panel1.add(ExitBtn, BorderLayout.EAST);
 
         Acc.setVisible(true);
     }
