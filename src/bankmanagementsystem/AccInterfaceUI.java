@@ -9,7 +9,7 @@ public class AccInterfaceUI extends JFrame  {
     private JFrame Acc;
     private ImageIcon BgColor, iconImage, Depic, depImage;
     private JPanel panel1, depanel, deposit;
-    private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl,depoLbl ;
+    private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl,depoLbl,withLbl ;
     private JTextField tfBlank, AccNametf, AccNumtf, balancetf,depotf;
     private JButton depoBtn, WdrawBtn, transBtn, pinBtn, ExitBtn;
    
@@ -87,24 +87,32 @@ public class AccInterfaceUI extends JFrame  {
         depoBtn.setIcon(new ImageIcon(depsize));
         depoBtn.setBounds(25, 150, 115, 120);  
         
+        //Deposit Lbl
         depoLbl = new JLabel("DEPOSIT");
         depoLbl.setBounds(25, 275, 115, 20);
         depoLbl.setHorizontalAlignment(SwingConstants.CENTER);
         depoLbl.setFont(new Font("Arial Black", Font.BOLD, 12));
         
-        //Withdraw
+        //Withdraw Btn
         WdrawBtn = new JButton();
         ImageIcon WdraImage = new ImageIcon("Wdraw.png");
         Image Wdrawsize = WdraImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         WdrawBtn.setIcon(new ImageIcon(Wdrawsize));
         WdrawBtn.setBounds(150, 150, 115, 120);
         
-        //Transactions
+        //withdraw Lbl
+        withLbl = new JLabel("WITHDRAW");
+        withLbl.setBounds(150, 275, 115, 20);
+        withLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        withLbl.setFont(new Font("Arial Black", Font.BOLD, 12));
+        
+        //Transactions Btn
         transBtn = new JButton();
         ImageIcon transImage = new ImageIcon("Transfer.png");
         Image transize = transImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         transBtn .setIcon(new ImageIcon(transize));
         transBtn.setBounds(275, 150, 115, 120);
+        
         
         //Change Pin
         pinBtn = new JButton();
@@ -132,6 +140,7 @@ public class AccInterfaceUI extends JFrame  {
         depanel.add(depoBtn);
         depanel.add(depoLbl);
         depanel.add(WdrawBtn);
+        depanel.add(withLbl);
         depanel.add(transBtn );
         depanel.add(pinBtn);
         panel1.add(ExitBtn, BorderLayout.EAST);
