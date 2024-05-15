@@ -9,7 +9,7 @@ public class AccInterfaceUI extends JFrame  {
     private JFrame Acc;
     private ImageIcon BgColor, iconImage, Depic, depImage;
     private JPanel panel1, depanel, deposit;
-    private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl,depoLbl,withLbl ;
+    private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl,depoLbl,withLbl,transLbl,pinLbl ;
     private JTextField tfBlank, AccNametf, AccNumtf, balancetf,depotf;
     private JButton depoBtn, WdrawBtn, transBtn, pinBtn, ExitBtn;
    
@@ -20,7 +20,7 @@ public class AccInterfaceUI extends JFrame  {
         Acc.setTitle("BANK MANAGEMENT SYSTEM");
         Acc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Acc.setResizable(false);
-        Acc.setSize(600, 530);
+        Acc.setSize(600, 510);
         
         // logo
         BgColor = new ImageIcon("logo.png");
@@ -48,7 +48,7 @@ public class AccInterfaceUI extends JFrame  {
         depanel = new JPanel();
         depanel.setLayout(null);  
         depanel.setBackground(new Color(220, 190, 200));
-        depanel.setPreferredSize(new Dimension(550, 350));
+        depanel.setPreferredSize(new Dimension(550, 330));
         panel1.add(depanel, BorderLayout.CENTER);
         
         // textfields
@@ -113,6 +113,12 @@ public class AccInterfaceUI extends JFrame  {
         transBtn .setIcon(new ImageIcon(transize));
         transBtn.setBounds(275, 150, 115, 120);
         
+        //Transaction Lbl
+        transLbl = new JLabel("TRANSACTION");
+        transLbl.setBounds(275, 275, 115, 20);
+        transLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        transLbl.setFont(new Font("Arial Black", Font.BOLD, 12));
+        
         
         //Change Pin
         pinBtn = new JButton();
@@ -121,7 +127,11 @@ public class AccInterfaceUI extends JFrame  {
         pinBtn.setIcon(new ImageIcon(pinsize));
         pinBtn.setBounds(400, 150, 115, 120);
         
-        
+        //cHANGE PIN Lbl
+        pinLbl = new JLabel("CHANGE PIN");
+        pinLbl.setBounds(400, 275, 115, 20);
+        pinLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        pinLbl.setFont(new Font("Arial Black", Font.BOLD, 12));
         
         //Exit
         ExitBtn = new JButton("EXIT");
@@ -142,8 +152,10 @@ public class AccInterfaceUI extends JFrame  {
         depanel.add(WdrawBtn);
         depanel.add(withLbl);
         depanel.add(transBtn );
+        depanel.add(transLbl );
         depanel.add(pinBtn);
-        panel1.add(ExitBtn, BorderLayout.EAST);
+        depanel.add(pinLbl);
+        panel1.add(ExitBtn);
 
         Acc.setVisible(true);
     }
