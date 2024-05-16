@@ -7,7 +7,7 @@ import javax.swing.*;
 public class UserLogin implements ActionListener {
     
     private JFrame f = new JFrame("BOB - BANK OF BSIT");
-    private JLabel  lblTitle, lblUsername, lblPassword, lblLoginResults, lbLogo;
+    private JLabel  lblTitle, lblWelcome, lblLogin, lblUsername, lblPassword, lblLoginResults, lbLogo;
     private JTextField txtfldUsername = new JTextField();
     private JPasswordField psswrdfldPassword = new JPasswordField();
     private JButton btnLogin, btnReset;
@@ -42,7 +42,16 @@ public class UserLogin implements ActionListener {
     lblTitle.setForeground(Color.WHITE);
     lblTitle.setFont(new Font("Courier New", Font.BOLD, 40));
     lblTitle.setHorizontalAlignment(JLabel.LEFT);
-
+    
+    //Welcome & pls login txt lbls
+    lblWelcome = new JLabel("Welcome Back Admin!");
+    lblWelcome.setBounds(40, 160, 220, 30);
+    lblWelcome.setFont(new Font("Arial", Font.BOLD, 20));
+    
+    lblLogin = new JLabel("Please log in to continue.");
+    lblLogin.setBounds(40, 200, 190, 30);
+    lblLogin.setFont(new Font("Arial", Font.PLAIN, 15));
+    
     //username & password text labels
     lblUsername = new JLabel("Username:");
     lblUsername.setBounds(80, 300, 120, 30);
@@ -61,25 +70,29 @@ public class UserLogin implements ActionListener {
     
     //enter & clear buttons
     btnLogin = new JButton("Enter");
-    btnLogin.setBounds(115, 400, 100, 30);
+    btnLogin.setBounds(115, 440, 100, 30);
     btnLogin.setFont(new Font("Arial", Font.PLAIN, 15));
     btnLogin.addActionListener(this);
    
     btnReset = new JButton("Clear");
-    btnReset.setBounds(225, 400, 100, 30);
+    btnReset.setBounds(225, 440, 100, 30);
     btnReset.setFont(new Font("Arial", Font.PLAIN, 15));
     btnReset.addActionListener(this);
     
+    
     //if login failed or is successful
     lblLoginResults = new JLabel("");
-    lblLoginResults.setBounds(20, 200, 480, 30);
+    lblLoginResults.setBounds(40, 530, 480, 30);
     lblLoginResults.setFont(new Font("Arial", Font.PLAIN, 15));
+    lblLoginResults.setForeground(new java.awt.Color(250,20,50));
     
     header.add(lblTitle, BorderLayout.NORTH);
     header.add(lbLogo);
     
     f.add(header);
     f.add(footer);
+    f.add(lblWelcome);
+    f.add(lblLogin);
     f.add(lblUsername);
     f.add(lblPassword);
     f.add(txtfldUsername);
@@ -92,6 +105,7 @@ public class UserLogin implements ActionListener {
         
 
     }
+    
     @Override
     public void actionPerformed(ActionEvent Login){
         if(Login.getSource() == btnLogin){
@@ -107,7 +121,8 @@ public class UserLogin implements ActionListener {
            psswrdfldPassword.setText("");
            lblLoginResults.setText("");     
            
-           lblLoginResults.setText("Login Failed");
+           lblLoginResults.setText("Login Failed. Please try again.");
         }      
     }
+    
 }

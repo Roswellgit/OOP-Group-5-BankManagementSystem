@@ -104,7 +104,6 @@ public class BankRecords implements ActionListener {
     
     @Override 
     public void actionPerformed(ActionEvent openclass) {
-        
         if(openclass.getSource()==btnReturn) {
             f.dispose();
             BankMainMenu bankmainmenu = new BankMainMenu();
