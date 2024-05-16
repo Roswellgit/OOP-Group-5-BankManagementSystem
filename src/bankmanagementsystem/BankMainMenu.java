@@ -5,18 +5,18 @@
 package bankmanagementsystem;
 
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
     
-public class BankMainMenu {
-    
+public class BankMainMenu implements ActionListener {
     
        //frame
         private JFrame f = new JFrame("Main Menu");
         private JPanel header, footer;
         private ImageIcon Logo;
         private JLabel lblLogo , lblBankName,lblInfo;
-        private JButton btnNewAcc, btnTrans;
+        private JButton btnNewAcc, btnLogin;
         
         
     BankMainMenu(){
@@ -60,15 +60,20 @@ public class BankMainMenu {
         
         
         //Main Menu buttons
-        
         btnNewAcc = new JButton("Create New Account");
         btnNewAcc.setBounds(20,300,300,100);
         btnNewAcc.setFont(new Font("Arial", Font.PLAIN, 15));
+        btnNewAcc.setFocusable(false);
+        btnNewAcc.addActionListener(this);
         
-        btnTrans = new JButton("Process Transaction");
-        btnTrans.setBounds(20,450,300,100);
-        btnTrans.setFont(new Font("Arial", Font.PLAIN, 15));
         
+        btnLogin = new JButton("Login");
+        btnLogin.setBounds(20,450,300,100);
+        btnLogin.setFont(new Font("Arial", Font.PLAIN, 15));
+        btnLogin.setFocusable(false);
+        btnLogin.addActionListener(this);
+        
+    
         f.add(header);
         f.add(footer);
         
@@ -78,13 +83,29 @@ public class BankMainMenu {
         
         f.add(lblInfo);
         f.add(btnNewAcc);
-        f.add(btnTrans);
+        f.add(btnLogin);
         
         f.setVisible(true);
         f.setResizable(false);
-        
+        f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+
+       
 }
+    @Override 
+    public void actionPerformed(ActionEvent openclass) {
         
+        if(openclass.getSource()==btnNewAcc) {
+            f.dispose();
+            BankManagementCredentials bankmanagementcredentials = new BankManagementCredentials();
+        }
+        
+        else if(openclass.getSource()==btnLogin) {
+            f.dispose();
+            UserLogin userlogin = new UserLogin();
+        }
+        
+    }
+    
     }
 
 
