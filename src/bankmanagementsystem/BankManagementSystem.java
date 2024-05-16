@@ -17,6 +17,7 @@ public class BankManagementSystem {
         // TODO code application logic here
         new UserLogin();
         new BankManagementCredentials();
+        new BankMainMenu();
     }
     
 }
