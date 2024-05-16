@@ -98,10 +98,16 @@ public class UserLogin implements ActionListener {
            String username = txtfldUsername.getText();
            String password = psswrdfldPassword.getText();
            lblLoginResults.setText("Login Successful!");
+           
+           f.dispose();
+           BankMainMenu bankmainmenu = new BankMainMenu();
+           
         }else if(Login.getSource() == btnReset){
            txtfldUsername.setText("");
            psswrdfldPassword.setText("");
            lblLoginResults.setText("");     
+           
+           lblLoginResults.setText("Login Failed");
         }      
     }
 }
