@@ -15,9 +15,8 @@ public class BankManagementSystem {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new UserLogin();
-        new BankManagementCredentials();
-        new BankMainMenu();
+        BankMainMenu bankmainmenu = new BankMainMenu();
+        
     }
     
 }
