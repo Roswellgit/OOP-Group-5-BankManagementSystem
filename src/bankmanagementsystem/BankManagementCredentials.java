@@ -125,15 +125,15 @@ public class BankManagementCredentials implements ActionListener {
 
         //buttons
         btnNextPage = new JButton ("Next");
-        btnNextPage.setBounds(295,570, 100, 30);
+        btnNextPage.setBounds(292,570, 100, 30);
         btnNextPage.setFont(new Font("Arial", Font.BOLD, 15));
         
         btnReset = new JButton ("Reset");
-        btnReset.setBounds (185, 570, 100, 30);
+        btnReset.setBounds (182, 570, 100, 30);
         btnReset.setFont(new Font("Arial", Font.BOLD, 15));
         
         btnReturn = new JButton ("Return");
-        btnReturn.setBounds (75, 570, 100, 30);
+        btnReturn.setBounds (72, 570, 100, 30);
         btnReturn.setFont(new Font("Arial", Font.BOLD, 15));
         btnReturn.setFocusable(false);
         btnReturn.addActionListener(this);
