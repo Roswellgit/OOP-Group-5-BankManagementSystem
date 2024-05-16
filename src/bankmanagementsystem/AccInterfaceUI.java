@@ -2,16 +2,17 @@ package bankmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 
-public class AccInterfaceUI extends JFrame  {
+public class AccInterfaceUI implements ActionListener  {
     
     private JFrame Acc;
     private ImageIcon BgColor, iconImage, Depic, depImage;
     private JPanel panel1, depanel, deposit;
-    private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl,depoLbl,withLbl,transLbl,pinLbl ;
-    private JTextField tfBlank, AccNametf, AccNumtf, balancetf,depotf;
-    private JButton depoBtn, WdrawBtn, transBtn, pinBtn, ExitBtn;
+    private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl, depoLbl, withLbl, transLbl, pinLbl ;
+    private JTextField tfBlank, AccNametf, AccNumtf, balancetf, depotf;
+    private JButton depoBtn, WdrawBtn, transBtn, pinBtn, ReturnBtn;
    
     
     public AccInterfaceUI() {
@@ -133,11 +134,12 @@ public class AccInterfaceUI extends JFrame  {
         pinLbl.setHorizontalAlignment(SwingConstants.CENTER);
         pinLbl.setFont(new Font("Arial Black", Font.BOLD, 12));
         
-        //Exit
-        ExitBtn = new JButton("EXIT");
-        ExitBtn.setBounds(400, 275, 100, 20);
-        ExitBtn.setFont(new Font("Arial", Font.BOLD, 10));
-
+        //Return
+        ReturnBtn = new JButton("RETURN");
+        ReturnBtn.setBounds(400, 275, 100, 20);
+        ReturnBtn.setFont(new Font("Arial", Font.BOLD, 10));
+        ReturnBtn.setFocusable(false);
+        ReturnBtn.addActionListener(this);
         
         
         depanel.add(lblInfo);
@@ -155,10 +157,17 @@ public class AccInterfaceUI extends JFrame  {
         depanel.add(transLbl );
         depanel.add(pinBtn);
         depanel.add(pinLbl);
-        panel1.add(ExitBtn);
+        panel1.add(ReturnBtn);
 
         Acc.setVisible(true);
     }
-
-
+    
+    @Override 
+    public void actionPerformed(ActionEvent openclass) {
+        
+        if(openclass.getSource()==ReturnBtn) {
+            Acc.dispose();
+            BankMainMenu bankmainmenu = new BankMainMenu();
+        }
+    }
 }

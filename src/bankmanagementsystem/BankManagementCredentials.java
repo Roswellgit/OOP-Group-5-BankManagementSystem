@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class BankManagementCredentials {
+public class BankManagementCredentials implements ActionListener {
     
     //combobox
     private String[] MonthOptions = {"Month", "January", "February", "March", "April",
@@ -30,7 +30,7 @@ public class BankManagementCredentials {
     private JTextField tfSuffix = new JTextField("");
     private JTextField tfAge = new JTextField("");
     private JTextField tfYear = new JTextField("");
-    private JButton btnNextPage, btnReset;
+    private JButton btnNextPage, btnReset, btnReturn;
     
     
     
@@ -125,12 +125,19 @@ public class BankManagementCredentials {
 
         //buttons
         btnNextPage = new JButton ("Next");
-        btnNextPage.setBounds(240,570, 100, 30);
-        btnNextPage.setFont(new Font("Arial", Font.PLAIN, 15));
+        btnNextPage.setBounds(295,570, 100, 30);
+        btnNextPage.setFont(new Font("Arial", Font.BOLD, 15));
         
         btnReset = new JButton ("Reset");
-        btnReset.setBounds (110, 570, 100, 30);
-        btnReset.setFont(new Font("Arial", Font.PLAIN, 15));
+        btnReset.setBounds (185, 570, 100, 30);
+        btnReset.setFont(new Font("Arial", Font.BOLD, 15));
+        
+        btnReturn = new JButton ("Return");
+        btnReturn.setBounds (75, 570, 100, 30);
+        btnReturn.setFont(new Font("Arial", Font.BOLD, 15));
+        btnReturn.setFocusable(false);
+        btnReturn.addActionListener(this);
+        
         
         f.add(header);
         f.add(footer);
@@ -161,8 +168,19 @@ public class BankManagementCredentials {
         f.add(cbSex);
         f.add(cbMonth);
         f.add(cbDay);
+        f.add(btnReturn);
 
         f.setVisible(true);
         f.setResizable(false);
     }
+    
+    @Override 
+    public void actionPerformed(ActionEvent openclass) {
+        
+        if(openclass.getSource()==btnReturn) {
+            f.dispose();
+            BankMainMenu bankmainmenu = new BankMainMenu();
+        }
+    }
 }
+  

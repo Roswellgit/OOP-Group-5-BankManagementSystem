@@ -11,7 +11,7 @@ import java.awt.event.*;
  *
  * @author win10
  */
-public class BankRecords {
+public class BankRecords implements ActionListener {
     
     //frames
     private JFrame f = new JFrame("User Records");
@@ -19,6 +19,7 @@ public class BankRecords {
     private ImageIcon Logo;
     private JLabel lblLogo, lblBankName;
     private JTable records;
+    private JButton btnReturn;
     
     
     
@@ -78,18 +79,36 @@ public class BankRecords {
         table.add(tscroll, BorderLayout.CENTER);
         
         
+        //buttons
+        btnReturn = new JButton ("Return");
+        btnReturn.setBounds (75, 570, 100, 30);
+        btnReturn.setFont(new Font("Arial", Font.BOLD, 15));
+        btnReturn.setFocusable(false);
+        btnReturn.addActionListener(this);
+        
+        
         
         f.add(table);
         f.add(header);
         f.add(footer);
         f.add(tscroll);
         f.add(records);
+        f.add(btnReturn);
         
         header.add(lblLogo);
         header.add(lblBankName, BorderLayout.NORTH);
         
         f.setVisible(true);
         f.setResizable(false);
+    }
+    
+    @Override 
+    public void actionPerformed(ActionEvent openclass) {
+        
+        if(openclass.getSource()==btnReturn) {
+            f.dispose();
+            BankMainMenu bankmainmenu = new BankMainMenu();
+        }
     }
     
 }
