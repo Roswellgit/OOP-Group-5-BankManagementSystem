@@ -19,7 +19,7 @@ public class BankRecords implements ActionListener {
     private ImageIcon Logo;
     private JLabel lblLogo, lblBankName;
     private JTable records;
-    private JButton btnReturn;
+    private JButton btnReturn, btnViewOne, btnViewTwo;
     
     
     
@@ -37,7 +37,7 @@ public class BankRecords implements ActionListener {
         footer.setBackground(new java.awt.Color(100,50,78));
         footer.setBounds(0, 670, 480, 80);
         
-         //bank logo
+        //bank logo
         Logo = new ImageIcon("BlackLogo.png");
         Image ResizedLogo = Logo.getImage().getScaledInstance( 90, 90, Image.SCALE_SMOOTH);
         ImageIcon FinalLogo = new ImageIcon(ResizedLogo);   
@@ -59,12 +59,12 @@ public class BankRecords implements ActionListener {
         //add date to table
         
         String [][] data = {
-            {"Jan Dow", "Single", "3422A12", "21", "11/21/1998", "Male"},
-            {"Beatrice","Married","32RE213","45","12/12/1987","Female"},
+            {"Jan Dow", "3422A12"},
+            {"Beatrice", "32RE213"},
                  
         };
         
-        String[] columnName = { "Name","Civil Status", "Account Number","Age","Birth Date","Gender"};
+        String[] columnName = { "Name", "Account Number"};
         //create table
         records = new JTable(data,columnName);
         records.setBounds(25,200,350,350);
@@ -81,10 +81,20 @@ public class BankRecords implements ActionListener {
         
         //buttons
         btnReturn = new JButton ("Return");
-        btnReturn.setBounds (75, 570, 100, 30);
+        btnReturn.setBounds (180, 570, 100, 30);
         btnReturn.setFont(new Font("Arial", Font.BOLD, 15));
         btnReturn.setFocusable(false);
         btnReturn.addActionListener(this);
+        
+        btnViewOne = new JButton ("...");
+        btnViewOne.setBounds(385,201,25,12);
+        btnViewOne.setFocusable(false);
+        btnViewOne.addActionListener(this);
+        
+        btnViewTwo = new JButton("...");
+        btnViewTwo.setBounds(385,217,25,12);
+        btnViewTwo.setFocusable(false);
+        btnViewTwo.addActionListener(this);
         
         
         
@@ -94,6 +104,8 @@ public class BankRecords implements ActionListener {
         f.add(tscroll);
         f.add(records);
         f.add(btnReturn);
+        f.add(btnViewOne);
+        f.add(btnViewTwo);
         
         header.add(lblLogo);
         header.add(lblBankName, BorderLayout.NORTH);
@@ -107,6 +119,14 @@ public class BankRecords implements ActionListener {
         if(openclass.getSource()==btnReturn) {
             f.dispose();
             BankMainMenu bankmainmenu = new BankMainMenu();
+        }
+        
+        else if(openclass.getSource()==btnViewOne){
+            UserOne jandow = new UserOne();
+        }
+        
+        else if(openclass.getSource()==btnViewTwo){
+            UserTwo beatrice = new UserTwo();
         }
     }
     
