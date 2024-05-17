@@ -157,6 +157,7 @@ public class AccInterfaceUI extends JFrame  {
         depanel.add(pinLbl);
         panel1.add(ExitBtn);
 
+        
         Acc.setVisible(true);
     }
 
