@@ -2,8 +2,9 @@ package bankmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class DepositUI extends JFrame {
+public class DepositUI extends JFrame implements ActionListener {
 
     private JFrame Acc;
     private ImageIcon BgColor, iconImage;
@@ -12,13 +13,14 @@ public class DepositUI extends JFrame {
     private JTextField tfBlank, Datetf, AccNametf, AccNumtf, Accbalancetf, depamnttf;
     private JButton DepoBtn, ExitBtn;
 
-    public DepositUI() {
+    DepositUI() {
         //frame
         Acc = new JFrame();
         Acc.setTitle("BANK MANAGEMENT SYSTEM");
         Acc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Acc.setResizable(false);
         Acc.setSize(600, 360);
+        Acc.setLocationRelativeTo(null);
         
         // logo
         BgColor = new ImageIcon("logo.png");
@@ -96,7 +98,7 @@ public class DepositUI extends JFrame {
         ExitBtn = new JButton("EXIT");
         ExitBtn.setBounds(470, 255, 70, 20);
         ExitBtn.setFont(new Font("Aptos", Font.BOLD, 10));
-        
+        ExitBtn.addActionListener(this);
         
         panel2.add(Depolbl);
         panel2.add(Datelbl);
@@ -114,6 +116,13 @@ public class DepositUI extends JFrame {
         panel2.add(ExitBtn);
         Acc.setVisible(true);
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent close) {
+        if(close.getSource() == ExitBtn) {
+            Acc.dispose();
+        }
     }
 
 }

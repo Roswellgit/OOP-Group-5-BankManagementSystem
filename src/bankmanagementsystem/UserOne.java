@@ -10,7 +10,7 @@ public class UserOne implements ActionListener {
     private JFrame f = new JFrame("Jan Dow");
     private JPanel header, footer;
     private JLabel lblEmail, lblPassword, lblFullName, lblStatus, lblAge, lblSex, lblBirthday, lblLogo, lblBankName;
-    private ImageIcon Logo;
+    private ImageIcon BgColor, Logo;
     private JTextField tfEmail, tfPassword, tfFullName, tfStatus, tfAge, tfSex, tfBirthday;
     private JButton btnClose;
     
@@ -21,6 +21,12 @@ public class UserOne implements ActionListener {
         f.setLayout(null);
         f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
         f.getContentPane().setBackground(new java.awt.Color(220, 190, 200));
+        
+        // logo
+        BgColor = new ImageIcon("logo.png");
+        f.setIconImage(BgColor.getImage());
+        f.getContentPane().setBackground(new Color(100,50,78));
+        f.setLayout(new BorderLayout());
         
         header = new JPanel();
         header.setBounds(0,0,480,110);

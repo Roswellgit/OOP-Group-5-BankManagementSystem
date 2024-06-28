@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bankmanagementsystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-/**
- *
- * @author win10
- */
 public class BankRecords implements ActionListener {
     
     //frames
     private JFrame f = new JFrame("USER RECORDS");
     private JPanel header, footer,table;
-    private ImageIcon Logo;
+    private ImageIcon BgColor, Logo;
     private JLabel lblLogo, lblBankName;
     private JTable records;
     private JButton btnReturn, btnViewOne, btnViewTwo;
@@ -29,6 +21,12 @@ public class BankRecords implements ActionListener {
         f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
         f.getContentPane().setBackground(new java.awt.Color(220, 190, 200));
         f.setLocationRelativeTo(null);
+        
+        // logo
+        BgColor = new ImageIcon("logo.png");
+        f.setIconImage(BgColor.getImage());
+        f.getContentPane().setBackground(new Color(100,50,78));
+        f.setLayout(new BorderLayout());
         
         header = new JPanel();
         header.setBackground(new java.awt.Color(100,50,78));

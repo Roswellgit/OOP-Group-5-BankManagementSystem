@@ -87,7 +87,8 @@ public class AccInterfaceUI implements ActionListener  {
         depImage = new ImageIcon("dep.png");
         Image depsize = depImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         depoBtn.setIcon(new ImageIcon(depsize));
-        depoBtn.setBounds(25, 150, 115, 120);  
+        depoBtn.setBounds(25, 150, 115, 120);
+        depoBtn.addActionListener(this);
         
         //Deposit Lbl
         depoLbl = new JLabel("DEPOSIT");
@@ -101,6 +102,7 @@ public class AccInterfaceUI implements ActionListener  {
         Image Wdrawsize = WdraImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         WdrawBtn.setIcon(new ImageIcon(Wdrawsize));
         WdrawBtn.setBounds(150, 150, 115, 120);
+        WdrawBtn.addActionListener(this);
         
         //withdraw Lbl
         withLbl = new JLabel("WITHDRAW");
@@ -114,6 +116,7 @@ public class AccInterfaceUI implements ActionListener  {
         Image transize = transImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         transBtn .setIcon(new ImageIcon(transize));
         transBtn.setBounds(275, 150, 115, 120);
+        transBtn.addActionListener(this);
         
         //Transaction Lbl
         transLbl = new JLabel("TRANSACTION");
@@ -128,6 +131,7 @@ public class AccInterfaceUI implements ActionListener  {
         Image pinsize = pinImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         pinBtn.setIcon(new ImageIcon(pinsize));
         pinBtn.setBounds(400, 150, 115, 120);
+        pinBtn.addActionListener(this);
         
         //cHANGE PIN Lbl
         pinLbl = new JLabel("CHANGE PIN");
@@ -167,9 +171,21 @@ public class AccInterfaceUI implements ActionListener  {
     @Override 
     public void actionPerformed(ActionEvent openclass) {
         
-        if(openclass.getSource()==ReturnBtn) {
+        if(openclass.getSource()==ReturnBtn) { 
             Acc.dispose();
             BankMainMenu bankmainmenu = new BankMainMenu();
+        }
+        else if(openclass.getSource()==depoBtn) { 
+            DepositUI depositui = new DepositUI();
+        }
+        else if(openclass.getSource()==WdrawBtn) { 
+            WithdrawUI withdrawui = new WithdrawUI();
+        }
+        else if(openclass.getSource()==transBtn) { 
+            TransactionUI transactionui = new TransactionUI();
+        }
+        else if(openclass.getSource()==pinBtn) { 
+            ChangePinUI changepinui = new ChangePinUI();
         }
     }
 }

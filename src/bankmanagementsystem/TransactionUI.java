@@ -1,21 +1,11 @@
 package bankmanagementsystem;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
 
-public class TransactionUI extends JFrame {
+public class TransactionUI extends JFrame implements ActionListener {
 
     private JFrame Acc;
     private ImageIcon BgColor, iconImage;
@@ -35,6 +25,7 @@ public class TransactionUI extends JFrame {
         Acc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Acc.setResizable(false);
         Acc.setSize(600, 510);
+        Acc.setLocationRelativeTo(null);
 
         // BG
         BgColor = new ImageIcon("logo.png");
@@ -97,6 +88,7 @@ public class TransactionUI extends JFrame {
         ExitBtn = new JButton("EXIT");
         ExitBtn.setBounds(400, 275, 100, 20);
         ExitBtn.setFont(new Font("Arial", Font.BOLD, 10));
+        ExitBtn.addActionListener(this);
         panel1.add(ExitBtn);
         
         transpanel.add(AccNamelbl);
@@ -109,4 +101,10 @@ public class TransactionUI extends JFrame {
         Acc.setVisible(true);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent close) {
+        if(close.getSource() == ExitBtn) {
+            Acc.dispose();
+        }
+    }
 }

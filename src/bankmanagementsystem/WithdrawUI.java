@@ -2,8 +2,9 @@ package bankmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class WithdrawUI extends JFrame {
+public class WithdrawUI extends JFrame implements ActionListener {
 
     private JFrame Acc;
     private ImageIcon BgColor, iconImage;
@@ -19,6 +20,7 @@ public class WithdrawUI extends JFrame {
         Acc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Acc.setResizable(false);
         Acc.setSize(600, 360);
+        Acc.setLocationRelativeTo(null);
         
         // logo
         BgColor = new ImageIcon("logo.png");
@@ -96,6 +98,7 @@ public class WithdrawUI extends JFrame {
         ExitBtn = new JButton("EXIT");
         ExitBtn.setBounds(470, 255, 70, 20);
         ExitBtn.setFont(new Font("Aptos", Font.BOLD, 10));
+        ExitBtn.addActionListener(this);
         
         depanel.add(Withdrawlbl);
         depanel.add(Datelbl);
@@ -115,4 +118,10 @@ public class WithdrawUI extends JFrame {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent close) {
+        if(close.getSource() == ExitBtn) {
+            Acc.dispose();
+        }
+    }
 }

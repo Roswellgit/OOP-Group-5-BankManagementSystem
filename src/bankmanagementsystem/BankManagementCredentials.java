@@ -17,7 +17,7 @@ public class BankManagementCredentials implements ActionListener {
     //frame
     private JFrame f = new JFrame ("ACCOUNT CREATION");
     private JPanel header, middle, OMenu, IMenu;
-    private ImageIcon Logo;
+    private ImageIcon BgColor, Logo;
     private JComboBox<String> cbMonth = new JComboBox<>(MonthOptions);
     private JComboBox<String> cbDay = new JComboBox<>(DayOptions);
     private JComboBox<String> cbSex = new JComboBox<>(SexOptions);
@@ -40,6 +40,12 @@ public class BankManagementCredentials implements ActionListener {
         f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
         f.getContentPane().setBackground(new java.awt.Color(100,50,78));
         f.setLocationRelativeTo(null);
+        
+        // logo
+        BgColor = new ImageIcon("logo.png");
+        f.setIconImage(BgColor.getImage());
+        f.getContentPane().setBackground(new Color(100,50,78));
+        f.setLayout(new BorderLayout());
         
         header = new JPanel();
         header.setBackground(new java.awt.Color(100,50,78));

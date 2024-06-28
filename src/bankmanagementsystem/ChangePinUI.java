@@ -3,8 +3,9 @@ package bankmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class ChangePinUI {
+public class ChangePinUI implements ActionListener {
     private JFrame Acc;
     private ImageIcon BgColor, iconImage;
     private JPanel panel1, depanel;
@@ -19,6 +20,7 @@ public class ChangePinUI {
         Acc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Acc.setResizable(false);
         Acc.setSize(500, 360);
+        Acc.setLocationRelativeTo(null);
         
         // logo
         BgColor = new ImageIcon("logo.png");
@@ -81,6 +83,7 @@ public class ChangePinUI {
         ExitBtn = new JButton("EXIT");
         ExitBtn.setBounds(230, 230, 70, 30);
         ExitBtn.setFont(new Font("Aptos", Font.BOLD, 10));
+        ExitBtn.addActionListener(this);
    
         
         depanel.add(ChangePinlbl);
@@ -97,4 +100,11 @@ public class ChangePinUI {
         depanel.add(ExitBtn);
         Acc.setVisible(true);
 }
+
+    @Override
+    public void actionPerformed(ActionEvent close) {
+        if(close.getSource() == ExitBtn) {
+            Acc.dispose();
+        }
+    }
 }
