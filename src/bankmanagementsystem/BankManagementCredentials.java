@@ -11,12 +11,12 @@ public class BankManagementCredentials implements ActionListener {
     "May", "June", "July", "August", "September", "October", "November", "December"};
     private String[] DayOptions = {"Day", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15",
     "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
-    private String[] SexOptions = {" ", "Male", "Female", "Attack Helicopter"};
+    private String[] SexOptions = {" ", "Male", "Female"};
     private String[] StatusOptions = {" ", "Single", "Married", "Widowed", "Legally Separated"};
 
     //frame
     private JFrame f = new JFrame ("Account Creation");
-    private JPanel header, footer;
+    private JPanel header, middle, OMenu, IMenu;
     private ImageIcon Logo;
     private JComboBox<String> cbMonth = new JComboBox<>(MonthOptions);
     private JComboBox<String> cbDay = new JComboBox<>(DayOptions);
@@ -35,18 +35,26 @@ public class BankManagementCredentials implements ActionListener {
     
     
     BankManagementCredentials(){
-        f.setSize(480, 750);
+        f.setSize(600,510);
         f.setLayout(null);
         f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
-        f.getContentPane().setBackground(new java.awt.Color(220, 190, 200));
+        f.getContentPane().setBackground(new java.awt.Color(100,50,78));
         
         header = new JPanel();
         header.setBackground(new java.awt.Color(100,50,78));
-        header.setBounds(0, 0, 480, 110);
+        header.setBounds(0, 0, 600, 100);
         
-        footer = new JPanel();
-        footer.setBackground(new java.awt.Color(100,50,78));
-        footer.setBounds(0, 670, 480, 80);
+        middle = new JPanel();
+        middle.setBackground(new Color(220, 190, 200));
+        middle.setBounds(25,100,535, 330);
+        
+        OMenu = new JPanel();
+        OMenu.setBackground(new Color(100,50,78));
+        OMenu.setBounds(450,160,100,100);
+        
+        IMenu = new JPanel();
+        IMenu.setBackground(new Color(220, 190, 200));
+        IMenu.setBounds(454,164,92,92);
         
         //bank logo
         Logo = new ImageIcon("BlackLogo.png");
@@ -58,7 +66,7 @@ public class BankManagementCredentials implements ActionListener {
         lblBankName = new JLabel("BANK OF BSIT");
         lblBankName.setForeground(Color.WHITE);
         lblBankName.setFont(new Font("Courier New", Font.BOLD, 40));
-        lblBankName.setHorizontalAlignment(JLabel.LEFT);
+        lblBankName.setHorizontalAlignment(JLabel.CENTER);
         
         // Set layout of the frame to null layout
         f.getContentPane().setLayout(null);
@@ -68,7 +76,7 @@ public class BankManagementCredentials implements ActionListener {
         
         // User Personal Information
         lblInfo = new JLabel("User Personal Information:");
-        lblInfo.setBounds(30,150,300,50);
+        lblInfo.setBounds(30,100,300,50);
         Font font = new Font("Aptos", Font.BOLD, 18);
         lblInfo.setFont(font);
         
@@ -76,71 +84,89 @@ public class BankManagementCredentials implements ActionListener {
         tfBlank.setBounds(0,0,0,0);
         
         lblLastName = new JLabel ("Last Name");
-        lblLastName.setBounds (63, 235, 100, 30);
-        tfLastName.setBounds(40, 260, 105, 30);
+        lblLastName.setBounds (66, 135, 100, 30);
+        lblLastName.setFont(new Font("Arial", Font.PLAIN,10));
+        tfLastName.setBounds(40, 160, 105, 30);
         tfLastName.setHorizontalAlignment(JTextField.CENTER);
         
         lblFirstName = new JLabel ("First Name");
-        lblFirstName.setBounds (173, 235, 100, 30);
-        tfFirstName.setBounds(150, 260, 105, 30);
+        lblFirstName.setBounds (178, 135, 100, 30);
+        lblFirstName.setFont(new Font("Arial", Font.PLAIN,10));
+        tfFirstName.setBounds(152, 160, 105, 30);
         tfFirstName.setHorizontalAlignment(JTextField.CENTER);
         
         lblMiddleName = new JLabel ("Middle Name");
-        lblMiddleName.setBounds (275, 235, 100, 30);
-        tfMiddleName.setBounds(260, 260, 105, 30);
+        lblMiddleName.setBounds (284, 135, 100, 30);
+        lblMiddleName.setFont(new Font("Arial", Font.PLAIN,10));
+        tfMiddleName.setBounds(264, 160, 105, 30);
         tfMiddleName.setHorizontalAlignment(JTextField.CENTER);
         
         lblSuffix = new JLabel ("Suffix");
-        lblSuffix.setBounds (378, 235, 100, 30);
-        tfSuffix.setBounds(370, 260, 50, 30);
+        lblSuffix.setBounds (386, 135, 100, 30);
+        lblSuffix.setFont(new Font("Arial", Font.PLAIN,10));
+        tfSuffix.setBounds(376, 160, 50, 30);
         tfSuffix.setHorizontalAlignment(JTextField.CENTER);
         
         //Age - SECOND ROW
         lblAge = new JLabel ("Age");
-        lblAge.setBounds (90, 305, 50, 30);
-        tfAge.setBounds(40, 330, 120, 30);
+        lblAge.setBounds (92, 235, 50, 30);
+        lblAge.setFont(new Font("Arial", Font.PLAIN,10));
+        tfAge.setBounds(40, 260, 125, 30);
         tfAge.setHorizontalAlignment(JTextField.CENTER);
 
         //Birthday
         lblBDay = new JLabel ("Date of Birth");
-        lblBDay.setBounds (275, 305, 120, 30);        
-        cbMonth.setBounds(180, 330, 110, 30);
-        cbDay.setBounds(300, 330, 60, 30);
+        lblBDay.setBounds (275, 235, 120, 30); 
+        lblBDay.setFont(new Font("Arial", Font.PLAIN,10));
+        cbMonth.setBounds(180, 260, 110, 30);
+        cbMonth.setFont(new Font("Arial", Font.PLAIN,10));
+        cbDay.setBounds(300, 260, 60, 30);
+        cbDay.setFont(new Font("Arial", Font.PLAIN,10));
         
         lblYear = new JLabel ("YYYY");
-        lblYear.setBounds (378, 360, 50, 30);
-        lblYear.setFont(new Font("Arial", Font.PLAIN, 11));
-        tfYear.setBounds (370, 330, 50, 30);
+        lblYear.setBounds (385, 283, 50, 30);
+        lblYear.setFont(new Font("Arial", Font.PLAIN, 10));
+        tfYear.setBounds (370, 260, 57, 30);
         tfYear.setHorizontalAlignment(JTextField.CENTER);
         
         //Sex - THIRD ROW
         lblSex = new JLabel ("Sex ");
-        lblSex.setBounds (118, 385, 120, 30);
-        cbSex.setBounds(40, 410, 180, 30);
+        lblSex.setBounds (123, 335, 120, 30);
+        lblSex.setFont(new Font("Arial", Font.PLAIN,10));
+        cbSex.setBounds(40, 360, 189, 30);
         
         //Civil Status
         lblStatus = new JLabel ("Civil Status");
-        lblStatus.setBounds (300, 385, 120, 30);
-        cbStatus.setBounds(240, 410, 180, 30);
+        lblStatus.setBounds (305, 335, 120, 30);
+        lblStatus.setFont(new Font("Arial", Font.PLAIN,10));
+        cbStatus.setBounds(240, 360, 189, 30);
 
         //buttons
-        btnNextPage = new JButton ("Next");
-        btnNextPage.setBounds(292,570, 100, 30);
+        btnNextPage = new JButton ("Create");
+        btnNextPage.setBounds(454,164, 92, 30);
         btnNextPage.setFont(new Font("Arial", Font.BOLD, 15));
+        btnNextPage.setBackground(new Color(100,50,78));
+        btnNextPage.setForeground(Color.WHITE);
+        btnNextPage.addActionListener(this);
         
         btnReset = new JButton ("Reset");
-        btnReset.setBounds (182, 570, 100, 30);
+        btnReset.setBounds (454, 195, 92, 30);
         btnReset.setFont(new Font("Arial", Font.BOLD, 15));
+        btnReset.setBackground(new Color(100,50,78));
+        btnReset.setForeground(Color.WHITE);
+        btnReset.addActionListener(this);
         
         btnReturn = new JButton ("Return");
-        btnReturn.setBounds (72, 570, 100, 30);
+        btnReturn.setBounds (454, 226, 92, 30);
         btnReturn.setFont(new Font("Arial", Font.BOLD, 15));
+        btnReturn.setBackground(new Color(100,50,78));
+        btnReturn.setForeground(Color.WHITE);
         btnReturn.setFocusable(false);
         btnReturn.addActionListener(this);
         
         
         f.add(header);
-        f.add(footer);
+        f.add(middle);
         f.add(tfBlank);
         
         header.add(lblLogo);
@@ -169,7 +195,10 @@ public class BankManagementCredentials implements ActionListener {
         f.add(cbMonth);
         f.add(cbDay);
         f.add(btnReturn);
-
+        
+        f.add(IMenu);
+        f.add(OMenu);
+        f.add(middle);
         f.setVisible(true);
         f.setResizable(false);
     }
@@ -177,10 +206,29 @@ public class BankManagementCredentials implements ActionListener {
     @Override 
     public void actionPerformed(ActionEvent openclass) {
         
-        if(openclass.getSource()==btnReturn) {
+        if(openclass.getSource()==btnReturn)
+        {
             f.dispose();
             BankMainMenu bankmainmenu = new BankMainMenu();
         }
+        else if(openclass.getSource()==btnReset)
+        {
+            tfLastName.setText("");
+            tfFirstName.setText("");
+            tfMiddleName.setText("");
+            tfSuffix.setText("");
+            tfAge.setText("");
+            tfYear.setText("");
+            cbMonth.setSelectedIndex(0);
+            cbDay.setSelectedIndex(0);
+            cbSex.setSelectedIndex(0);
+            cbStatus.setSelectedIndex(0);
+        }
+        else if(openclass.getSource()==btnNextPage)
+        {
+            
+            CreationPopUp load = new CreationPopUp();
+            f.dispose();
+        }
     }
 }
-  
