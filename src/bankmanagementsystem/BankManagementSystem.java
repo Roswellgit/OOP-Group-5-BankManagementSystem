@@ -4,6 +4,8 @@
  */
 package bankmanagementsystem;
 
+import java.sql.*;
+
 /**
  *
  * @author win10
@@ -14,8 +16,30 @@ public class BankManagementSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        new UserLogin();        
+      try{
+        
+          Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
+ 
+          PreparedStatement pr = con.prepareStatement("SELECT * FROM bank_table");
+          
+       ResultSet res = pr.executeQuery();
+       
+          while(res.next()){
+              String id = res.getString("CustomerID");
+               String n = res.getString("CustomerName");
+                String a = res.getString("BankAmount");
+                
+                System.out.println(id);
+                         System.out.println(n);
+                                  System.out.println(a);
+          }
+       
+
+          }
+      
+      catch(Exception ex){
+          System.out.println(ex);
+      }
     }
     
 }
