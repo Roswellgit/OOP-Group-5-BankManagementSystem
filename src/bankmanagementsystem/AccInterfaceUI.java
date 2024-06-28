@@ -18,10 +18,11 @@ public class AccInterfaceUI implements ActionListener  {
     public AccInterfaceUI() {
         //frame
         Acc = new JFrame();
-        Acc.setTitle("BANK MANAGEMENT SYSTEM");
+        Acc.setTitle("USER ACCOUNT INTERFACE");
         Acc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Acc.setResizable(false);
         Acc.setSize(600, 510);
+        Acc.setLocationRelativeTo(null);
         
         // logo
         BgColor = new ImageIcon("logo.png");

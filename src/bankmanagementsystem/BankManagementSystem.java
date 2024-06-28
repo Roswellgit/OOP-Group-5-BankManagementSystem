@@ -11,11 +11,11 @@ import java.sql.*;
  * @author win10
  */
 public class BankManagementSystem {
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
+       
+        UserLogin userlogin = new UserLogin();
+
       try{
         
           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");

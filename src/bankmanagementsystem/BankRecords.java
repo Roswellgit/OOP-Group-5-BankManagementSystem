@@ -14,7 +14,7 @@ import java.awt.event.*;
 public class BankRecords implements ActionListener {
     
     //frames
-    private JFrame f = new JFrame("User Records");
+    private JFrame f = new JFrame("USER RECORDS");
     private JPanel header, footer,table;
     private ImageIcon Logo;
     private JLabel lblLogo, lblBankName;
@@ -28,6 +28,7 @@ public class BankRecords implements ActionListener {
         f.setLayout(null);
         f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
         f.getContentPane().setBackground(new java.awt.Color(220, 190, 200));
+        f.setLocationRelativeTo(null);
         
         header = new JPanel();
         header.setBackground(new java.awt.Color(100,50,78));
