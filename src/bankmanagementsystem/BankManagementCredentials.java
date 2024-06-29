@@ -3,6 +3,7 @@ package bankmanagementsystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class BankManagementCredentials implements ActionListener {
     
@@ -233,9 +234,37 @@ public class BankManagementCredentials implements ActionListener {
         }
         else if(openclass.getSource()==btnNextPage)
         {
+            try{
+                String query = "INSERT INTO `bank_table`(`LName`,`FName`,`MName`,`Suffix`,`Age`,`Month`,`Day`,"
+                        + "`Year`,`Sex`,`Status`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
+          PreparedStatement pr = con.prepareStatement(query);
+          
+              pr.setString(1,tfLastName.getText());
+              pr.setString(2,tfFirstName.getText());
+              pr.setString(3,tfMiddleName.getText());
+              pr.setString(4,tfSuffix.getText());
+              pr.setString(5,tfAge.getText());
+              pr.setObject(6,cbMonth.getSelectedItem());
+              pr.setObject(7,cbDay.getSelectedItem());
+              pr.setString(8,tfYear.getText());
+              pr.setObject(9,cbSex.getSelectedItem());
+              pr.setObject(10,cbStatus.getSelectedItem());
+              
+              pr.executeUpdate();
+              
+              JOptionPane.showMessageDialog(null,"Registered Successfully");
+              JOptionPane.showMessageDialog(null,"Redirecting to Admin Main Menu...");
+          }
+       
+      
+      catch(Exception ex){
+          System.out.println(ex);
+      }
+    }
             
-            CreationPopUp load = new CreationPopUp();
             f.dispose();
+            BankMainMenu load = new BankMainMenu();
+
         }
     }
-}

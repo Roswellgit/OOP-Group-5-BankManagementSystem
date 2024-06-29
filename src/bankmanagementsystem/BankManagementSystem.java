@@ -25,7 +25,7 @@ public class BankManagementSystem {
        ResultSet res = pr.executeQuery();
        
           while(res.next()){
-              String id = res.getString("CustomerID");
+              String id = res.getString("idBank_Table");
                String n = res.getString("CustomerName");
                 String a = res.getString("BankAmount");
                 

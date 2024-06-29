@@ -18,6 +18,7 @@ public class CreationPopUp
         f.setLayout(null);
         f.setDefaultCloseOperation(f.DISPOSE_ON_CLOSE);
         f.getContentPane().setBackground(new java.awt.Color(220, 190, 200));
+        f.setLocationRelativeTo(null);
                 
         //Loading Bar
         lblLoad = new JLabel("Account created successfully!");
