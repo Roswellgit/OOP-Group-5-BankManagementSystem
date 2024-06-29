@@ -21,6 +21,7 @@ public class UserOne implements ActionListener {
         f.setLayout(null);
         f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
         f.getContentPane().setBackground(new java.awt.Color(220, 190, 200));
+        f.setLocationRelativeTo(null);
         
         // logo
         BgColor = new ImageIcon("logo.png");
