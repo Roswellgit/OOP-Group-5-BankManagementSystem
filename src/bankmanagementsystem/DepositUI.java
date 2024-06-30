@@ -3,6 +3,8 @@ package bankmanagementsystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DepositUI extends JFrame implements ActionListener {
 
@@ -55,6 +57,7 @@ public class DepositUI extends JFrame implements ActionListener {
         Datetf = new JTextField();
         Datetf.setBounds(170, 60, 150, 20);
         Datetf.setHorizontalAlignment(JTextField.CENTER);
+        Datetf.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         
         AccNamelbl = new JLabel ("Account Name:");
         AccNamelbl.setBounds (40, 80, 100, 40);
@@ -79,6 +82,8 @@ public class DepositUI extends JFrame implements ActionListener {
         
         DepoBtn = new JButton("DEPOSIT");
         DepoBtn.setBounds(370, 50, 125, 30);
+        DepoBtn.addActionListener(this); 
+        
         balanceImg = new JLabel();
         balanceImg.setBounds(380, 90, 130, 100);
         ImageIcon wdrawImage = new ImageIcon("dep.png");
@@ -119,10 +124,13 @@ public class DepositUI extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent close) {
-        if(close.getSource() == ExitBtn) {
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == ExitBtn) {
             Acc.dispose();
+        } else if (e.getSource() == DepoBtn) {
+            JOptionPane.showMessageDialog(this, "Successfully deposited the amount!", "Deposit Success", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-
 }
+
+    
