@@ -125,12 +125,14 @@ public class DepositUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == ExitBtn) {
+        if (e.getSource() == ExitBtn) {
             Acc.dispose();
         } else if (e.getSource() == DepoBtn) {
-            JOptionPane.showMessageDialog(this, "Successfully deposited the amount!", "Deposit Success", JOptionPane.INFORMATION_MESSAGE);
+            Acc.dispose();
         }
     }
-}
+
+    }
+
 
     
