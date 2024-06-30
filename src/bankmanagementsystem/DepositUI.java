@@ -3,6 +3,7 @@ package bankmanagementsystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,102 +16,101 @@ public class DepositUI extends JFrame implements ActionListener {
     private JTextField tfBlank, Datetf, AccNametf, AccNumtf, Accbalancetf, depamnttf;
     private JButton DepoBtn, ExitBtn;
 
-    DepositUI() {
-        //frame
-        Acc = new JFrame();
-        Acc.setTitle("BANK MANAGEMENT SYSTEM");
+    private Connection conn;
+
+    public DepositUI() {
+        // Frame setup
+        Acc = new JFrame("BANK MANAGEMENT SYSTEM");
         Acc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Acc.setResizable(false);
         Acc.setSize(600, 360);
         Acc.setLocationRelativeTo(null);
-        
-        // logo
+
+        // Logo
         BgColor = new ImageIcon("logo.png");
         Acc.setIconImage(BgColor.getImage());
-        Acc.getContentPane().setBackground(new Color(100,50,78));
+        Acc.getContentPane().setBackground(new Color(100, 50, 78));
         Acc.setLayout(new BorderLayout());
-        
-        //panelinc
+
+        // Panel setup
         panel1 = new JPanel();
         panel1.setBackground(new Color(100, 50, 78));
-        panel1.setLayout(null); 
+        panel1.setLayout(null);
         Acc.add(panel1, BorderLayout.CENTER);
-        
+
         panel2 = new JPanel();
         panel2.setLayout(null);
         panel2.setBackground(new Color(220, 190, 200));
         panel2.setBounds(20, 20, 545, 280);
         panel1.add(panel2);
-        
 
-        Depolbl = new JLabel("DEPOSIT ");
-        Depolbl.setBounds(10,0,100,30);
-        Font font = new Font("Aptos", Font.BOLD, 15);
-        Depolbl.setFont(font);
-        
-        // withdraw
+        // Labels and Text Fields
+        Depolbl = new JLabel("DEPOSIT");
+        Depolbl.setBounds(10, 0, 100, 30);
+        Depolbl.setFont(new Font("Aptos", Font.BOLD, 15));
+
         tfBlank = new JTextField();
-        tfBlank.setBounds(0,0,0,0);
-        
-        Datelbl = new JLabel ("Date:");
-        Datelbl.setBounds (40, 50, 100, 40);
+        tfBlank.setBounds(0, 0, 0, 0);
+
+        Datelbl = new JLabel("Date:");
+        Datelbl.setBounds(40, 50, 100, 40);
         Datetf = new JTextField();
         Datetf.setBounds(170, 60, 150, 20);
         Datetf.setHorizontalAlignment(JTextField.CENTER);
+        Datetf.setEditable(false);
         Datetf.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-        
-        AccNamelbl = new JLabel ("Account Name:");
-        AccNamelbl.setBounds (40, 80, 100, 40);
+
+        AccNamelbl = new JLabel("Account Name:");
+        AccNamelbl.setBounds(40, 80, 100, 40);
         AccNametf = new JTextField();
         AccNametf.setBounds(170, 90, 150, 20);
         AccNametf.setHorizontalAlignment(JTextField.CENTER);
-        
-        AccNumlbl = new JLabel ("Account Number:");
+        AccNametf.setEditable(false);
+
+        AccNumlbl = new JLabel("Account Number:");
         AccNumlbl.setBounds(40, 110, 140, 40);
         AccNumtf = new JTextField();
         AccNumtf.setBounds(170, 120, 150, 20);
         AccNumtf.setHorizontalAlignment(JTextField.CENTER);
-        
-        
-        Accbalancelbl = new JLabel ("Account Balance:");
+
+        Accbalancelbl = new JLabel("Account Balance:");
         Accbalancelbl.setBounds(40, 140, 140, 40);
         Accbalancetf = new JTextField();
         Accbalancetf.setBounds(170, 150, 150, 20);
         Accbalancetf.setHorizontalAlignment(JTextField.CENTER);
-        
-        
-        
+        Accbalancetf.setEditable(false);
+
+        // Deposit button
         DepoBtn = new JButton("DEPOSIT");
         DepoBtn.setBounds(370, 50, 125, 30);
-        DepoBtn.addActionListener(this); 
-        
+        DepoBtn.addActionListener(this);
+
         balanceImg = new JLabel();
         balanceImg.setBounds(380, 90, 130, 100);
-        ImageIcon wdrawImage = new ImageIcon("dep.png");
-        Image picsize = wdrawImage.getImage().getScaledInstance(110, 110, Image.SCALE_SMOOTH);
-        ImageIcon drawpic = new ImageIcon(picsize);
-        balanceImg.setIcon(drawpic);
-        
-        
-        depamntlbl = new JLabel ("Please Enter Amount to Deposit");
-        depamntlbl.setBounds (40, 180, 250, 40);
+        ImageIcon depoImage = new ImageIcon("dep.png");
+        Image picsize = depoImage.getImage().getScaledInstance(110, 110, Image.SCALE_SMOOTH);
+        ImageIcon depopic = new ImageIcon(picsize);
+        balanceImg.setIcon(depopic);
+
+        depamntlbl = new JLabel("Please Enter Amount to Deposit");
+        depamntlbl.setBounds(40, 180, 250, 40);
         depamntlbl.setFont(new Font("Aptos", Font.BOLD, 15));
         depamnttf = new JTextField();
         depamnttf.setBounds(40, 220, 300, 30);
         depamnttf.setHorizontalAlignment(JTextField.CENTER);
-        
-        // ExitButton
+
+        // Exit button
         ExitBtn = new JButton("EXIT");
         ExitBtn.setBounds(470, 255, 70, 20);
         ExitBtn.setFont(new Font("Aptos", Font.BOLD, 10));
         ExitBtn.addActionListener(this);
-        
+
         panel2.add(Depolbl);
         panel2.add(Datelbl);
         panel2.add(Datetf);
         panel2.add(AccNamelbl);
-        panel2.add(AccNumlbl);
         panel2.add(AccNametf);
+        panel2.add(AccNumlbl);
         panel2.add(AccNumtf);
         panel2.add(Accbalancelbl);
         panel2.add(Accbalancetf);
@@ -121,17 +121,58 @@ public class DepositUI extends JFrame implements ActionListener {
         panel2.add(ExitBtn);
         Acc.setVisible(true);
 
+        // Database connection
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank", "root", "root");
+        } catch (Exception e) {
+            System.out.print(e);
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == ExitBtn) {
-            Acc.dispose();
-        } 
+            BankMainMenu bankmainmenu = new BankMainMenu();
+        } else if (e.getSource() == DepoBtn) {
+            Deposit();
         }
     }
 
-    
+    private void Deposit() {
+        String accNum = AccNumtf.getText();
+        if (accNum.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter an account number.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
+        try {
+            String query = "SELECT account_name, balance FROM accounts WHERE account_number = ?";
+            PreparedStatement depositPs = conn.prepareStatement(query);
+            depositPs.setString(1, accNum);
+            ResultSet depositRs = depositPs.executeQuery();
 
-    
+            if (depositRs.next()) {
+                String accName = depositRs.getString("account_name");
+                double balance = depositRs.getDouble("balance");
+
+                AccNametf.setText(accName);
+                Accbalancetf.setText(String.valueOf(balance));
+
+                double depositAmount = Double.parseDouble(depamnttf.getText());
+                double newBalance = balance + depositAmount;
+                String updateQuery = "UPDATE accounts SET balance = ? WHERE account_number = ?";
+                PreparedStatement updatePs = conn.prepareStatement(updateQuery);
+                updatePs.setDouble(1, newBalance);
+                updatePs.setString(2, accNum);
+                updatePs.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Deposit successful.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                Accbalancetf.setText(String.valueOf(newBalance));
+            } else {
+                JOptionPane.showMessageDialog(this, "Account not found.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database error.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+}
