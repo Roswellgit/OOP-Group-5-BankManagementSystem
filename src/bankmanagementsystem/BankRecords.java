@@ -7,10 +7,11 @@ public class BankRecords implements ActionListener {
     
     private JFrame f;
     private ImageIcon BgColor;
-    private JPanel panel1, depanel, table;
+    private JPanel panel1, depanel;
     private JLabel label1;
     private JButton ReturnBtn;
     private JTable records;
+    private JScrollPane spScroll;
    
     
     public BankRecords() {
@@ -50,33 +51,27 @@ public class BankRecords implements ActionListener {
         depanel = new JPanel();
         depanel.setLayout(null);  
         depanel.setBackground(new Color(220, 190, 200));
-        depanel.setPreferredSize(new Dimension(550, 330));
+        depanel.setPreferredSize(new Dimension(540, 330));
         panel1.add(depanel, BorderLayout.CENTER);
         
-        //add date to table
-        
+        //add data to table
         String [][] data = {
-            {"Jan Dow", "3422A12"},
-            {"Beatrice", "32RE213"},
+            {"Jan Dow", "3422A12", "21", "03-01-1999", "Male", "Married"},
+            {"Beatrice", "32RE213", "34", "04-17-1986", "Female", "Divorced"},
                  
         };
         
-        String[] columnName = { "Name", "font Number"};
+        String[] columnName = { "Full Name", "Account Number", "Age", "Birthday", "Sex", "Civil Status"};
+        
         //create table
         records = new JTable(data,columnName);
-        records.setBounds(35,30, 420, 270);
-        
-        //make a scroll pane
-        JScrollPane tscroll = new JScrollPane(records);
-      
+        records.setBounds(20,30, 500, 270);
         
         //Add the scroll to the Panel
-        table = new JPanel();
-        table.setLayout(new BorderLayout());
-        table.add(tscroll, BorderLayout.CENTER);
+        spScroll = new JScrollPane(records);
         
-        depanel.add(table);
-        depanel.add(tscroll);
+        depanel.add(spScroll, BorderLayout.CENTER);
+        
         depanel.add(records);
 
         //Return
