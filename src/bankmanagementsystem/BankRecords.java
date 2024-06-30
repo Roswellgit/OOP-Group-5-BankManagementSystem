@@ -2,6 +2,7 @@ package bankmanagementsystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class BankRecords implements ActionListener {
     
@@ -54,18 +55,46 @@ public class BankRecords implements ActionListener {
         depanel.setPreferredSize(new Dimension(540, 330));
         panel1.add(depanel, BorderLayout.CENTER);
         
-        //add data to table
-        String [][] data = {
-            {"Jan Dow", "3422A12", "21", "03-01-1999", "Male", "Married"},
-            {"Beatrice", "32RE213", "34", "04-17-1986", "Female", "Divorced"},
-                 
-        };
+//        //add data to table
+//         String[] columnName = { "Full Name", "Account Number", "Age", "Birthday", "Sex", "Civil Status"};
+//        Object [][] data = {
+//            {"Jan Dow", "3422A12", "21", "03-01-1999", "Male", "Married"},
+//            {"Beatrice", "32RE213", "34", "04-17-1986", "Female", "Divorced"},
+//                 
+//        };
         
-        String[] columnName = { "Full Name", "Account Number", "Age", "Birthday", "Sex", "Civil Status"};
+try{
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
+    
+    Statement st = con.createStatement();
+    
+    String q =  "SELECT * FROM tbl_cite";
+    ResultSet rs = st.executeQuery(q);
+    
+    while(rs.next()){
+        String id = rs.getString("idbank_table");
+        String lname = rs.getString("LName");
+        String fname = rs.getString("FName");
+        String mname = rs.getString("Mname");
+        String suf= rs.getString("Suffix");
+        String age = rs.getString("Age");
+        String mon = rs.getString("Month");
+        String d = rs.getString("Day");
+        String y = rs.getString("Year");
+        String se = rs.getString("Sex");
+        String set = rs.getString("Status");
+        
+    }
+}
+catch(Exception ex){
+    System.out.println(ex);
+}
+       
         
         //create table
         records = new JTable(data,columnName);
         records.setBounds(20,30, 500, 270);
+      
         
         //Add the scroll to the Panel
         spScroll = new JScrollPane(records);
@@ -73,6 +102,9 @@ public class BankRecords implements ActionListener {
         depanel.add(spScroll, BorderLayout.CENTER);
         
         depanel.add(records);
+        
+        
+        
 
         //Return
         ReturnBtn = new JButton("RETURN");

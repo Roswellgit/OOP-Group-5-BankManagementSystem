@@ -14,32 +14,9 @@ public class BankManagementSystem {
     
     public static void main(String[] args) {
        
-        UserLogin userlogin = new UserLogin();
+        BankMainMenu mainmenu = new BankMainMenu();
 
-      try{
-        
-          Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
- 
-          PreparedStatement pr = con.prepareStatement("SELECT * FROM bank_table");
-          
-       ResultSet res = pr.executeQuery();
-       
-          while(res.next()){
-              String id = res.getString("idBank_Table");
-               String n = res.getString("CustomerName");
-                String a = res.getString("BankAmount");
-                
-                System.out.println(id);
-                         System.out.println(n);
-                                  System.out.println(a);
-          }
-       
-
-          }
-      
-      catch(Exception ex){
-          System.out.println(ex);
-      }
+     
     }
     
 }

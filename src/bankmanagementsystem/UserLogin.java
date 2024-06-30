@@ -126,16 +126,22 @@ public class UserLogin implements ActionListener {
         if(Login.getSource() == btnLogin){
            String username = txtfldUsername.getText();
            String password = pwfPassword.getText();
-           lblLoginResults.setText("Login Successful!");
+           if(username.equals("try") && password.equals("catch")){
+               lblLoginResults.setText("Login Successful!");
            
            f.dispose();
            BankMainMenu bankmainmenu = new BankMainMenu();
+           }
+           else{
+               lblLoginResults.setText("Login Failed. Please Try Again");
+           }
+           
            
         }else if(Login.getSource() == btnReset){
            txtfldUsername.setText("");
            pwfPassword.setText("");
            lblLoginResults.setText("");     
-           lblLoginResults.setText("Login Failed. Please try again.");
+           
 //           lblLoginResults.setVisible(true);
         }      
     }

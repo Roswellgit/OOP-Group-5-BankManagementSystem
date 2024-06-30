@@ -176,15 +176,19 @@ public class AccInterfaceUI implements ActionListener  {
             BankMainMenu bankmainmenu = new BankMainMenu();
         }
         else if(openclass.getSource()==depoBtn) { 
+            Acc.dispose();
             DepositUI depositui = new DepositUI();
         }
         else if(openclass.getSource()==WdrawBtn) { 
+              Acc.dispose();
             WithdrawUI withdrawui = new WithdrawUI();
         }
         else if(openclass.getSource()==transBtn) { 
+              Acc.dispose();
             TransactionUI transactionui = new TransactionUI();
         }
         else if(openclass.getSource()==pinBtn) { 
+              Acc.dispose();
             ChangePinUI changepinui = new ChangePinUI();
         }
     }
