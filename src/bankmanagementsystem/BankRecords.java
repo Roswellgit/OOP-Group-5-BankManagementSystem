@@ -9,7 +9,7 @@ public class BankRecords implements ActionListener {
     private ImageIcon BgColor;
     private JPanel panel1, depanel, table;
     private JLabel label1;
-    private JButton ReturnBtn, btnViewOne, btnViewTwo;
+    private JButton ReturnBtn;
     private JTable records;
    
     
@@ -78,20 +78,6 @@ public class BankRecords implements ActionListener {
         depanel.add(table);
         depanel.add(tscroll);
         depanel.add(records);
-        
-        //User 1 button
-        btnViewOne = new JButton ("...");
-        btnViewOne.setBounds(455,30,25,12);
-        btnViewOne.setFocusable(false);
-        btnViewOne.addActionListener(this);
-        depanel.add(btnViewOne);
-        
-        //User 2 button
-        btnViewTwo = new JButton ("...");
-        btnViewTwo.setBounds(455,47,25,12);
-        btnViewTwo.setFocusable(false);
-        btnViewTwo.addActionListener(this);
-        depanel.add(btnViewTwo);
 
         //Return
         ReturnBtn = new JButton("RETURN");
@@ -111,44 +97,5 @@ public class BankRecords implements ActionListener {
             f.dispose();
             BankMainMenu bankmainmenu = new BankMainMenu();
         }
-        else if(e.getSource()==btnViewOne){
-            UserOne jandow = new UserOne();
-        }
-        else if(e.getSource()==btnViewTwo){
-            UserTwo beatrice = new UserTwo();
-        }
     }
 }
-////        
-////        btnViewTwo = new JButton("...");
-////        btnViewTwo.setBounds(385,217,25,12);
-////        btnViewTwo.setFocusable(false);
-////        btnViewTwo.addActionListener(this);
-////        
-////        
-////        
-////        f.add(table);
-//        f.add(header);
-//        header.add(middle);
-        
-//        header.add(btnReturn);
-////        f.add(btnViewOne);
-////        f.add(btnViewTwo);
-////        
-//        header.add(lblLogo);
-//        header.add(lblBankName, BorderLayout.NORTH);
-//        
-//        f.setVisible(true);
-//        f.setResizable(false);
-//    }
-//    
-//   @Override 
-//    public void actionPerformed(ActionEvent openclass) {
-        
-////        
-
-////        
-
-//    }
-//    
-//}
