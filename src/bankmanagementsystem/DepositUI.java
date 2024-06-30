@@ -127,12 +127,11 @@ public class DepositUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == ExitBtn) {
             Acc.dispose();
-        } else if (e.getSource() == DepoBtn) {
-            Acc.dispose();
+        } 
         }
     }
 
-    }
+    
 
 
     
