@@ -19,7 +19,7 @@ public class BankManagementSystem {
             @Override
             public void run() {
                 BankMainMenu mn = new BankMainMenu();
-                mn.setVisible(true);
+
             }
         });
 

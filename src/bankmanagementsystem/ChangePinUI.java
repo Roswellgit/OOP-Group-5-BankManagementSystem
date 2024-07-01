@@ -142,6 +142,18 @@ public class ChangePinUI implements ActionListener {
         JOptionPane.showMessageDialog(null, "New pin must be a 4-digit number.");
         }
         
-        
+        try{
+            String pinUpdate = "UPDATE bank_table SET pin = ? WHERE pin = ?";
+            PreparedStatement up = conn.prepareStatement(pinUpdate);
+            up.setString(1,strNewPin);
+            up.setString(2,strOldPin);
+            up.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,"Change Pin Successful","Success",JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

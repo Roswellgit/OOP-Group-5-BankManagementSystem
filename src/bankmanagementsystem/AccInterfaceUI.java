@@ -217,9 +217,8 @@ public class AccInterfaceUI implements ActionListener  {
                 AccNametf.setText(accName);
                 balancetf.setText(accBal);
                 AccNumtf.setText(accNumber);
-            } else {
-                JOptionPane.showMessageDialog(null, "Account not found");
-            }
+            } 
+            
         } catch (Exception e) {
            System.out.println(e);
         }

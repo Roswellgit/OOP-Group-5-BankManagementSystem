@@ -85,7 +85,7 @@ public class TransactionUI extends JFrame implements ActionListener {
 //        transtable.setBounds(30, 120, 450, 200);
 //        transpanel.add(transtable);
         transTable = new JTable();
-        transtable = new JScrollPane(transTable);
+        transtable = new JScrollPane();
         transTable.setBounds(30, 120, 450, 200);
         transpanel.add(transTable);
         transpanel.add(transtable);
@@ -114,8 +114,9 @@ public class TransactionUI extends JFrame implements ActionListener {
         String tbData[] = {accnum,date,type,amnt,accbal};
         DefaultTableModel record = (DefaultTableModel)transTable.getModel();
         
+          record.addColumn("Account Number");
         record.addRow(tbData);
-        record.fireTableDataChanged();
+      
         
     }
     con.close();
