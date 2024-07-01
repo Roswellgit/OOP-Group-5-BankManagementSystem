@@ -142,7 +142,6 @@ public class UserLogin implements ActionListener {
            pwfPassword.setText("");
            lblLoginResults.setText("");     
            
-//           lblLoginResults.setVisible(true);
         }      
     }
 }

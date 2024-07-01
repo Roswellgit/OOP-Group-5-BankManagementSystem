@@ -1,9 +1,10 @@
-
 package bankmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class ChangePinUI implements ActionListener {
     private JFrame Acc;
@@ -12,8 +13,12 @@ public class ChangePinUI implements ActionListener {
     private JLabel ChangePinlbl, EntPasslbl, EntPassNewlbl, EntPassAgainlbl, Passlbl, Passlbl1;
     private JTextField tfBlank, EntPasstf, EntPassNewtf, EntPassAgaintf;
     private JButton SaveBtn, ExitBtn;
+    private String strOldPin, strNewPin, strConfirmNewPin;
+    
+    private Connection conn;
     
     public ChangePinUI(){
+        
         //frame
         Acc = new JFrame();
         Acc.setTitle("BANK MANAGEMENT SYSTEM");
@@ -79,11 +84,14 @@ public class ChangePinUI implements ActionListener {
         SaveBtn = new JButton("SAVE");
         SaveBtn.setBounds(150, 230, 70, 30);
         SaveBtn.setFont(new Font("Aptos", Font.BOLD, 10));
+        SaveBtn.addActionListener(this);
         
         ExitBtn = new JButton("EXIT");
         ExitBtn.setBounds(230, 230, 70, 30);
         ExitBtn.setFont(new Font("Aptos", Font.BOLD, 10));
         ExitBtn.addActionListener(this);
+        
+        
    
         
         depanel.add(ChangePinlbl);
@@ -99,12 +107,41 @@ public class ChangePinUI implements ActionListener {
         depanel.add(SaveBtn);
         depanel.add(ExitBtn);
         Acc.setVisible(true);
+        
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank", "root", "root");
+        } catch (Exception e) {
+            System.out.print(e);
+        }
 }
 
     @Override
     public void actionPerformed(ActionEvent close) {
         if(close.getSource() == ExitBtn) {
             Acc.dispose();
+            AccInterfaceUI accinterfaceui = new AccInterfaceUI();
         }
+        else if (close.getSource() == SaveBtn) {
+            ChangePin();
+        }
+    }
+    
+    public void ChangePin(){
+        
+        strOldPin = EntPasstf.getText();
+        strNewPin = EntPassNewtf.getText();
+        strConfirmNewPin = EntPassAgaintf.getText();
+        
+        if (strOldPin.isEmpty() || strNewPin.isEmpty() || strConfirmNewPin.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill in every required field.", "WARNING", JOptionPane.WARNING_MESSAGE);
+        }
+        if (!strNewPin.equals(strConfirmNewPin)) {
+            JOptionPane.showMessageDialog(null, "Your new pin and re-entered new pin do not match. Please try again.", "WARNING", JOptionPane.WARNING_MESSAGE);
+        }
+        if (!strNewPin.matches("\\d{4}")) {
+        JOptionPane.showMessageDialog(null, "New pin must be a 4-digit number.");
+        }
+        
+        
     }
 }

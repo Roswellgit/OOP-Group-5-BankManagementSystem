@@ -14,7 +14,8 @@ public class BankManagementSystem {
     
     public static void main(String[] args) {
        
-        BankMainMenu mainmenu = new BankMainMenu();
+//        BankMainMenu mainmenu = new BankMainMenu();
+        UserLogin userlogin = new UserLogin();
 
      
     }
