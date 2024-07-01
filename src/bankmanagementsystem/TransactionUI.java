@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 public class TransactionUI extends JFrame implements ActionListener {
 
@@ -69,20 +70,59 @@ public class TransactionUI extends JFrame implements ActionListener {
         balancetf = new JTextField();
         balancetf.setBounds(375, 40, 100, 25);
         
-
-        // Table
-        String[] columnNames = {"Transaction ID", "Date", "Type", "Amount", "Balance"};
-        Object[][] data = {
-            {"1", "", "", "", ""},
-            {"2", "", "", "", ""},
-            {"3", "", "", "", ""},
-            {"4", "", "", "", ""},
-            {"5", "", "", "", ""}
-        };
-        transTable = new JTable(new DefaultTableModel(data, columnNames));
+//
+//        // Table
+//        String[] columnNames = {"Transaction ID", "Date", "Type", "Amount", "Balance"};
+//        Object[][] data = {
+//            {"1", "", "", "", ""},
+//            {"2", "", "", "", ""},
+//            {"3", "", "", "", ""},
+//            {"4", "", "", "", ""},
+//            {"5", "", "", "", ""}
+//        };
+//        transTable = new JTable(new DefaultTableModel(data, columnNames));
+//        transtable = new JScrollPane(transTable);
+//        transtable.setBounds(30, 120, 450, 200);
+//        transpanel.add(transtable);
+        transTable = new JTable();
         transtable = new JScrollPane(transTable);
-        transtable.setBounds(30, 120, 450, 200);
+        transTable.setBounds(30, 120, 450, 200);
+        transpanel.add(transTable);
         transpanel.add(transtable);
+        transTable.setModel(new javax.swing.table.DefaultTableModel(
+        new Object[][]{
+            
+        },
+        new String[]{"Transaction ID", "Date", "Type", "Amount", "Balance"}
+        ));
+        try{
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
+    
+    Statement st = con.createStatement();
+    
+    String q =  "SELECT * FROM history";
+    ResultSet rs = st.executeQuery(q);
+    
+    while(rs.next()){
+        String accnum = rs.getString("acc_num");
+        String date = rs.getString("date");
+        String type = rs.getString("type");
+        String amnt = rs.getString("amnt");
+        String accbal= rs.getString("acc_bal");
+        
+        
+        String tbData[] = {accnum,date,type,amnt,accbal};
+        DefaultTableModel record = (DefaultTableModel)transTable.getModel();
+        
+        record.addRow(tbData);
+        record.fireTableDataChanged();
+        
+    }
+    con.close();
+}
+catch(Exception ex){
+    System.out.println(ex);
+}
 
         //Exit
         ExitBtn = new JButton("EXIT");

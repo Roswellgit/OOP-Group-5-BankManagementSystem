@@ -56,13 +56,7 @@ public class BankRecords implements ActionListener {
         depanel.setPreferredSize(new Dimension(540, 330));
         panel1.add(depanel, BorderLayout.CENTER);
         
-//        //add data to table
-//         String[] columnName = { "Full Name", "Account Number", "Age", "Birthday", "Sex", "Civil Status"};
-//        Object [][] data = {
-//            {"Jan Dow", "3422A12", "21", "03-01-1999", "Male", "Married"},
-//            {"Beatrice", "32RE213", "34", "04-17-1986", "Female", "Divorced"},
-//                 
-//        };
+
         
 
         

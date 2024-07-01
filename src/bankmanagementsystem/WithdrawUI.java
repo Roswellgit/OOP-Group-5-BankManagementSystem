@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class WithdrawUI extends JFrame implements ActionListener {
 
@@ -56,6 +58,7 @@ public class WithdrawUI extends JFrame implements ActionListener {
         Datetf.setBounds(170, 60, 150, 20);
         Datetf.setHorizontalAlignment(JTextField.CENTER);
         Datetf.setEditable(false);
+        Datetf.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 
         AccNamelbl = new JLabel("Account Name:");
         AccNamelbl.setBounds(40, 80, 100, 40);
@@ -162,6 +165,15 @@ public class WithdrawUI extends JFrame implements ActionListener {
                 } else {
                     double newBalance = balance - withdrawAmount;
                     String updateQuery = "UPDATE transactions SET acc_bal = ? WHERE acc_number = ?";
+                     
+                String insertQuery = "INSERT INTO history VALUES(?,?,?,?,?)";
+                PreparedStatement in = conn.prepareStatement(insertQuery);
+                in.setString(1,accNum);
+                in.setString(2,Datetf.getText());
+                in.setString(3,"Withdraw");
+                in.setDouble(4,Double.parseDouble(tfWithdraw.getText()));
+                in.setDouble(5,newBalance);
+                in.executeUpdate();
                     PreparedStatement updatePs = conn.prepareStatement(updateQuery);
                     updatePs.setDouble(1, newBalance);
                     updatePs.setString(2, accNum);
@@ -176,7 +188,7 @@ public class WithdrawUI extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Account not found.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Database error.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
         } 
     }
 

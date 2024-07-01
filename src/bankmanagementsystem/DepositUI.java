@@ -7,6 +7,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class DepositUI extends JFrame implements ActionListener {
 
     private JFrame Acc;
@@ -59,6 +60,7 @@ public class DepositUI extends JFrame implements ActionListener {
         Datetf.setHorizontalAlignment(JTextField.CENTER);
         Datetf.setEditable(false);
         Datetf.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        
 
         AccNamelbl = new JLabel("Account Name:");
         AccNamelbl.setBounds(40, 80, 100, 40);
@@ -161,10 +163,20 @@ public class DepositUI extends JFrame implements ActionListener {
                 double depositAmount = Double.parseDouble(depamnttf.getText());
                 double newBalance = balance + depositAmount;
                 String updateQuery = "UPDATE transactions SET acc_bal = ? WHERE acc_number = ?";
+                String insertQuery = "INSERT INTO history VALUES(?,?,?,?,?)";
+                PreparedStatement in = conn.prepareStatement(insertQuery);
+                in.setString(1,accNum);
+                in.setString(2,Datetf.getText());
+                in.setString(3,"Deposit");
+                in.setDouble(4,Double.parseDouble(depamnttf.getText()));
+                in.setDouble(5,newBalance);
+                in.executeUpdate();
                 PreparedStatement updatePs = conn.prepareStatement(updateQuery);
+                
                 updatePs.setDouble(1, newBalance);
                 updatePs.setString(2, accNum);
                 updatePs.executeUpdate();
+                
 
                 JOptionPane.showMessageDialog(this, "Deposit successful.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 Accbalancetf.setText(String.valueOf(newBalance));
@@ -172,7 +184,7 @@ public class DepositUI extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Account not found.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Database error.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
