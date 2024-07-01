@@ -4,6 +4,7 @@
  */
 package bankmanagementsystem;
 
+import java.awt.EventQueue;
 import java.sql.*;
 
 /**
@@ -15,7 +16,13 @@ public class BankManagementSystem {
     public static void main(String[] args) {
        
 //        BankMainMenu mainmenu = new BankMainMenu();
-        UserLogin userlogin = new UserLogin();
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                BankMainMenu mn = new BankMainMenu();
+                mn.setVisible(true);
+            }
+        });
 
      
     }
