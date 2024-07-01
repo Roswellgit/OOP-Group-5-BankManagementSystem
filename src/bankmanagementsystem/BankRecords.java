@@ -3,7 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
-
+import javax.swing.table.DefaultTableModel;
+        
 public class BankRecords implements ActionListener {
     
     private JFrame f;
@@ -63,12 +64,25 @@ public class BankRecords implements ActionListener {
 //                 
 //        };
         
-try{
+
+        
+        //create table
+        records = new JTable();
+        records.setBounds(20,30, 500, 270);
+        records.setModel(new javax.swing.table.DefaultTableModel(
+        new Object[][]{
+            
+        },
+        new String[]{
+            "ID","Last Name","First Name","Middle Name","Suffix","Age","Month","Day","Year","Sex","Status"
+        }
+        ));
+        try{
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
     
     Statement st = con.createStatement();
     
-    String q =  "SELECT * FROM tbl_cite";
+    String q =  "SELECT * FROM bank_table";
     ResultSet rs = st.executeQuery(q);
     
     while(rs.next()){
@@ -84,16 +98,20 @@ try{
         String se = rs.getString("Sex");
         String set = rs.getString("Status");
         
+        String tbData[] = {id,lname,fname,mname,suf,age,mon,d,y,se,set};
+        DefaultTableModel record = (DefaultTableModel)records.getModel();
+        
+        record.addRow(tbData);
+        
     }
+    con.close();
 }
 catch(Exception ex){
     System.out.println(ex);
 }
        
         
-        //create table
-        records = new JTable(data,columnName);
-        records.setBounds(20,30, 500, 270);
+  
       
         
         //Add the scroll to the Panel
