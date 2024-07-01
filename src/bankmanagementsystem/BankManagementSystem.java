@@ -5,7 +5,6 @@
 package bankmanagementsystem;
 
 import java.awt.EventQueue;
-import java.sql.*;
 
 /**
  *

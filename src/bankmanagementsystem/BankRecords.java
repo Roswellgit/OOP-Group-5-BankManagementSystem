@@ -1,9 +1,12 @@
 package bankmanagementsystem;
 import javax.swing.*;
 import java.awt.*;
+import static java.awt.Color.black;
 import java.awt.event.*;
 import java.sql.*;
+import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
         
 public class BankRecords implements ActionListener {
     
@@ -14,6 +17,8 @@ public class BankRecords implements ActionListener {
     private JButton ReturnBtn;
     private JTable records;
     private JScrollPane spScroll;
+    private DefaultTableModel ColumnHeaders;
+    private JTableHeader tableheader;
    
     
     public BankRecords() {
@@ -23,7 +28,7 @@ public class BankRecords implements ActionListener {
         f.setTitle("USER RECORDS");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setResizable(false);
-        f.setSize(600, 510);
+        f.setSize(1000, 600);
         f.setLocationRelativeTo(null);
         
         // logo
@@ -47,30 +52,32 @@ public class BankRecords implements ActionListener {
         //panel at the bg of the icons
         panel1 = new JPanel();
         panel1.setBackground(new Color(100,50,78));
-        panel1.setBounds(50, 50, 500, 400);
+        panel1.setBounds(0,100,1000,600);
         f.add(panel1, BorderLayout.CENTER); 
         
         depanel = new JPanel();
-        depanel.setLayout(null);  
+        depanel.setPreferredSize(new Dimension(920,415));
+        depanel.setLayout(null);
         depanel.setBackground(new Color(220, 190, 200));
-        depanel.setPreferredSize(new Dimension(540, 330));
         panel1.add(depanel, BorderLayout.CENTER);
         
-
-        
-
-        
         //create table
-        records = new JTable();
-        records.setBounds(20,30, 500, 270);
-        records.setModel(new javax.swing.table.DefaultTableModel(
-        new Object[][]{
-            
-        },
-        new String[]{
-            "ID","Last Name","First Name","Middle Name","Suffix","Age","Month","Day","Year","Sex","Status"
-        }
-        ));
+        ColumnHeaders = new DefaultTableModel(new Object[]{"ID","Last Name","First Name","Middle Name","Suffix","Age","Month","Day","Year","Sex","Status"}, 0);
+        records = new JTable(ColumnHeaders);
+        records.setOpaque(false);
+
+        tableheader = records.getTableHeader();
+        records.getTableHeader().setBackground(new Color(181,103,110));
+        records.getTableHeader().setForeground(black);
+        records.getTableHeader().setFont(new Font("Aptos", Font.PLAIN, 12));
+        
+        //Add the scroll to the Panel
+        spScroll = new JScrollPane(records);
+        spScroll.setBounds(40,30,840,350);
+        spScroll.setBorder(new LineBorder(Color.BLACK, 1));
+        depanel.add(spScroll);
+        
+
         try{
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
     
@@ -103,24 +110,11 @@ public class BankRecords implements ActionListener {
 catch(Exception ex){
     System.out.println(ex);
 }
-       
-        
-  
-      
-        
-        //Add the scroll to the Panel
-        spScroll = new JScrollPane(records);
-        
-        depanel.add(spScroll, BorderLayout.CENTER);
-        
-        depanel.add(records);
-        
-        
-        
 
+        
         //Return
         ReturnBtn = new JButton("RETURN");
-        ReturnBtn.setBounds(400, 275, 100, 20);
+        ReturnBtn.setBounds(200, 705, 100, 15);
         ReturnBtn.setFont(new Font("Arial", Font.BOLD, 10));
         ReturnBtn.setFocusable(false);
         ReturnBtn.addActionListener(this);
