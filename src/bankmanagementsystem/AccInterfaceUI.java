@@ -3,7 +3,7 @@ package bankmanagementsystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import java.sql.*;
 
 public class AccInterfaceUI implements ActionListener  {
     
@@ -13,6 +13,9 @@ public class AccInterfaceUI implements ActionListener  {
     private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl, depoLbl, withLbl, transLbl, pinLbl ;
     private JTextField tfBlank, AccNametf, AccNumtf, balancetf, depotf;
     private JButton depoBtn, WdrawBtn, transBtn, pinBtn, ReturnBtn;
+    private Connection conn;
+    private String accountNumber = "123456";
+    
    
     
     public AccInterfaceUI() {
@@ -166,6 +169,13 @@ public class AccInterfaceUI implements ActionListener  {
 
         
         Acc.setVisible(true);
+        
+         try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank", "root", "root");
+            fetchAccountData(accountNumber);
+        } catch (Exception e) {
+            System.out.print(e);
+        }
     }
     
     @Override 
@@ -191,5 +201,28 @@ public class AccInterfaceUI implements ActionListener  {
               Acc.dispose();
             ChangePinUI changepinui = new ChangePinUI();
         }
+    }
+  
+   private void fetchAccountData(String accNumber) {
+        try {
+            String query = "SELECT acc_name, acc_bal FROM transactions WHERE acc_number = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, accNumber);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String accName = rs.getString("acc_name");
+                String accBal = rs.getString("acc_bal");
+                System.out.println("Account Name: " + accName); 
+                System.out.println("Account Balance: " + accBal);
+                AccNametf.setText(accName);
+                balancetf.setText(accBal);
+                AccNumtf.setText(accNumber);
+            } else {
+                JOptionPane.showMessageDialog(null, "Account not found");
+            }
+        } catch (Exception e) {
+           System.out.println(e);
+        }
+        
     }
 }
