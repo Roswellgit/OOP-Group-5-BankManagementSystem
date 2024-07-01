@@ -13,6 +13,7 @@ public class UserLogin implements ActionListener {
     private JTextField txtfldUsername;
     private JPasswordField pwfPassword;
     private JButton btnLogin, btnReset;
+    private JCheckBox chShow;
     
     UserLogin(){
         
@@ -103,6 +104,12 @@ public class UserLogin implements ActionListener {
         btnReset.setFont(new Font("Arial", Font.PLAIN, 13));
         btnReset.addActionListener(this);
         f.add(btnReset);
+        
+        chShow = new JCheckBox();
+        chShow.setBounds(430,275,30,20);
+        chShow.setBackground(new Color(220, 190, 200));
+        chShow.addActionListener(this);
+        f.add(chShow);
 
         //if login failed or is successful
         lblLoginResults = new JLabel("");
@@ -143,5 +150,17 @@ public class UserLogin implements ActionListener {
            lblLoginResults.setText("");     
            
         }      
+        
+        else if(Login.getSource()==chShow)
+        {
+            if(chShow.isSelected())
+            {
+                pwfPassword.setEchoChar((char)0);
+            }
+            else
+            {
+                pwfPassword.setEchoChar('•');
+            }
+        }
     }
 }
