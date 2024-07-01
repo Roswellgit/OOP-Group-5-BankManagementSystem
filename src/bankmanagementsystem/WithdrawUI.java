@@ -144,14 +144,14 @@ public class WithdrawUI extends JFrame implements ActionListener {
         }
 
         try {
-            String query = "SELECT account_name, balance FROM accounts WHERE account_number = ?";
+            String query = "SELECT acc_name, acc_bal FROM transactions WHERE acc_number = ?";
             PreparedStatement withdrawPs = conn.prepareStatement(query);
             withdrawPs.setString(1, accNum);
             ResultSet withdrawrs = withdrawPs.executeQuery();
 
             if (withdrawrs.next()) {
-                String accName = withdrawrs.getString("account_name");
-                double balance = withdrawrs.getDouble("balance");
+                String accName = withdrawrs.getString("acc_name");
+                double balance = withdrawrs.getDouble("acc_bal");
 
                 AccNametf.setText(accName);
                 Accbalancetf.setText(String.valueOf(balance));
@@ -161,7 +161,7 @@ public class WithdrawUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this, "Insufficient balance.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                     double newBalance = balance - withdrawAmount;
-                    String updateQuery = "UPDATE accounts SET balance = ? WHERE account_number = ?";
+                    String updateQuery = "UPDATE transactions SET acc_bal = ? WHERE acc_number = ?";
                     PreparedStatement updatePs = conn.prepareStatement(updateQuery);
                     updatePs.setDouble(1, newBalance);
                     updatePs.setString(2, accNum);
@@ -169,6 +169,8 @@ public class WithdrawUI extends JFrame implements ActionListener {
 
                     JOptionPane.showMessageDialog(this, "Withdrawal successful.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     Accbalancetf.setText(String.valueOf(newBalance));
+                    
+                    
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Account not found.", "Error", JOptionPane.ERROR_MESSAGE);

@@ -146,21 +146,21 @@ public class DepositUI extends JFrame implements ActionListener {
         }
 
         try {
-            String query = "SELECT account_name, balance FROM accounts WHERE account_number = ?";
+            String query = "SELECT acc_name, acc_bal FROM transactions WHERE acc_number = ?";
             PreparedStatement depositPs = conn.prepareStatement(query);
             depositPs.setString(1, accNum);
             ResultSet depositRs = depositPs.executeQuery();
 
             if (depositRs.next()) {
-                String accName = depositRs.getString("account_name");
-                double balance = depositRs.getDouble("balance");
+                String accName = depositRs.getString("acc_name");
+                double balance = depositRs.getDouble("acc_bal");
 
                 AccNametf.setText(accName);
                 Accbalancetf.setText(String.valueOf(balance));
 
                 double depositAmount = Double.parseDouble(depamnttf.getText());
                 double newBalance = balance + depositAmount;
-                String updateQuery = "UPDATE accounts SET balance = ? WHERE account_number = ?";
+                String updateQuery = "UPDATE transactions SET acc_bal = ? WHERE acc_number = ?";
                 PreparedStatement updatePs = conn.prepareStatement(updateQuery);
                 updatePs.setDouble(1, newBalance);
                 updatePs.setString(2, accNum);
