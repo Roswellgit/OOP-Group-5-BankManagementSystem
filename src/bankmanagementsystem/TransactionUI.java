@@ -84,43 +84,78 @@ public class TransactionUI extends JFrame implements ActionListener {
 //        transtable = new JScrollPane(transTable);
 //        transtable.setBounds(30, 120, 450, 200);
 //        transpanel.add(transtable);
+// transTable = new JTable();
+//        transtable = new JScrollPane(transTable);
+//        transTable.setBounds(30, 120, 450, 200); 
+//        transpanel.add(transTable); 
+//        transpanel.add(transtable);
+//        transTable.setModel(new javax.swing.table.DefaultTableModel(
+//        new Object[][]{
+//            
+//        },
+//        new String[]{"Transaction ID", "Date", "Type", "Amount", "Balance"}
+//        ));
+//        try{
+//    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
+//    
+//    Statement st = con.createStatement();
+//    
+//    String q =  "SELECT * FROM history";
+//    ResultSet rs = st.executeQuery(q);
+//    
+//    while(rs.next()){
+//        String accnum = rs.getString("acc_num");
+//        String date = rs.getString("date");
+//        String type = rs.getString("type");
+//        String amnt = rs.getString("amnt");
+//        String accbal= rs.getString("acc_bal");
+//        
+//        
+//        String tbData[] = {accnum,date,type,amnt,accbal};
+//        DefaultTableModel record = (DefaultTableModel)transTable.getModel();
+//        
+//        record.addColumn("Account Number");
+//        record.addRow(tbData);
+//      
+//        
+//    }
+//    con.close();
+//}
+//catch(Exception ex){
+//    System.out.println(ex);
+//}
         transTable = new JTable();
-        transtable = new JScrollPane();
+        transtable = new JScrollPane(transTable);
         transTable.setBounds(30, 120, 450, 200);
         transpanel.add(transTable);
         transpanel.add(transtable);
         transTable.setModel(new javax.swing.table.DefaultTableModel(
-        new Object[][]{
-            
-        },
+        
+        new Object[][]{},
         new String[]{"Transaction ID", "Date", "Type", "Amount", "Balance"}
         ));
-        try{
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
-    
-    Statement st = con.createStatement();
-    
-    String q =  "SELECT * FROM history";
-    ResultSet rs = st.executeQuery(q);
-    
-    while(rs.next()){
-        String accnum = rs.getString("acc_num");
-        String date = rs.getString("date");
-        String type = rs.getString("type");
-        String amnt = rs.getString("amnt");
-        String accbal= rs.getString("acc_bal");
-        
-        
-        String tbData[] = {accnum,date,type,amnt,accbal};
-        DefaultTableModel record = (DefaultTableModel)transTable.getModel();
-        
-          record.addColumn("Account Number");
-        record.addRow(tbData);
-      
-        
+
+        try {
+ 
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank", "root", "root");
+        Statement st = con.createStatement();
+
+        String q = "SELECT * FROM history";
+        ResultSet rs = st.executeQuery(q);
+
+        DefaultTableModel model = (DefaultTableModel) transTable.getModel();
+
+        while (rs.next()) {
+            String accnum = rs.getString("acc_num");
+            String date = rs.getString("date");
+            String type = rs.getString("type");
+            String amnt = rs.getString("amnt");
+            String accbal = rs.getString("acc_bal");
+            String tbData[] = {accnum, date, type, amnt, accbal};
+            model.addRow(tbData);
+        }
+        con.close();
     }
-    con.close();
-}
 catch(Exception ex){
     System.out.println(ex);
 }
