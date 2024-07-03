@@ -11,7 +11,7 @@ public class TransactionUI extends JFrame implements ActionListener {
     private JFrame Acc;
     private ImageIcon BgColor, iconImage;
     private JPanel panel1, transpanel;
-    private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl;
+    private JLabel label1, lblInfo,  balancelbl;
     private JTextField tfBlank, depotf;
     private JButton  ExitBtn;
     private Icon image;
@@ -52,13 +52,11 @@ public class TransactionUI extends JFrame implements ActionListener {
         panel1.add(transpanel, BorderLayout.CENTER);
 
         // Account Name 
-        AccNamelbl = new JLabel("Account Name:");
-        AccNamelbl.setBounds(10, 30, 150, 25);
+       
         
        
         // Account Number
-        AccNumlbl = new JLabel("Account Number:");
-        AccNumlbl.setBounds(10, 70, 150, 25);
+     
         
         
 
@@ -164,8 +162,8 @@ catch(Exception ex){
         ExitBtn.addActionListener(this);
         panel1.add(ExitBtn);
         
-        transpanel.add(AccNamelbl);
-        transpanel.add(AccNumlbl);
+        
+        
         transpanel.add(balancelbl);
         
         
