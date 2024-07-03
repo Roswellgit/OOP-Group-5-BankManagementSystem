@@ -12,7 +12,7 @@ public class TransactionUI extends JFrame implements ActionListener {
     private ImageIcon BgColor, iconImage;
     private JPanel panel1, transpanel;
     private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl;
-    private JTextField tfBlank, AccNametf, AccNumtf, balancetf, depotf;
+    private JTextField tfBlank, depotf;
     private JButton  ExitBtn;
     private Icon image;
     private JTable transTable;
@@ -54,21 +54,18 @@ public class TransactionUI extends JFrame implements ActionListener {
         // Account Name 
         AccNamelbl = new JLabel("Account Name:");
         AccNamelbl.setBounds(10, 30, 150, 25);
-        AccNametf = new JTextField();
-        AccNametf.setBounds(110, 30, 150, 25);
+        
        
         // Account Number
         AccNumlbl = new JLabel("Account Number:");
         AccNumlbl.setBounds(10, 70, 150, 25);
-        AccNumtf = new JTextField();
-        AccNumtf.setBounds(110, 70, 150, 25);
+        
         
 
         // Account Balance 
         balancelbl = new JLabel("Account Balance: ₱ ");
         balancelbl.setBounds(265, 40, 150, 25);
-        balancetf = new JTextField();
-        balancetf.setBounds(375, 40, 100, 25);
+        
         
 //
 //        // Table
@@ -168,11 +165,9 @@ catch(Exception ex){
         panel1.add(ExitBtn);
         
         transpanel.add(AccNamelbl);
-        transpanel.add(AccNametf);
         transpanel.add(AccNumlbl);
-        transpanel.add(AccNumtf);
         transpanel.add(balancelbl);
-        transpanel.add(balancetf);
+        
         
         Acc.setVisible(true);
     }
