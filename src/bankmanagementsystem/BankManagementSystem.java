@@ -18,7 +18,7 @@ public class BankManagementSystem {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                UserLogin ul = new UserLogin();
+                AccInterfaceUI ul = new AccInterfaceUI();
 
             }
         });

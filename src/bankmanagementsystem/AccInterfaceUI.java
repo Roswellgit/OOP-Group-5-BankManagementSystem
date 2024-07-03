@@ -14,7 +14,7 @@ public class AccInterfaceUI implements ActionListener {
     private JTextField tfBlank, AccNametf, AccNumtf, balancetf, depotf;
     private JButton depoBtn, WdrawBtn, transBtn, pinBtn, ReturnBtn, enterBtn;
     private Connection conn;
-    private String accountNumber = "123456";
+    private String accountNumber;
     
    
     
@@ -71,12 +71,15 @@ public class AccInterfaceUI implements ActionListener {
         AccNametf = new JTextField();
         AccNametf.setBounds(170, 60, 150, 20);
         AccNametf.setHorizontalAlignment(JTextField.CENTER);
+        AccNametf.setEditable(false);
+        AccNametf.setFocusable(false);
         
         AccNumlbl = new JLabel ("Account Number:");
         AccNumlbl.setBounds (40, 80, 140, 40);
         AccNumtf = new JTextField();
         AccNumtf.setBounds(170, 90, 150, 20);
         AccNumtf.setHorizontalAlignment(JTextField.CENTER);
+        
         
         enterBtn = new JButton("Enter");
         enterBtn.setBounds(200, 120,90,20);
@@ -91,6 +94,8 @@ public class AccInterfaceUI implements ActionListener {
         balancetf = new JTextField();
         balancetf.setBounds(370, 82, 150, 25);
         balancetf.setHorizontalAlignment(JTextField.CENTER);
+        balancetf.setEditable(false);
+        balancetf.setFocusable(false);
 
         //Deposit btn
         depoBtn = new JButton();
@@ -180,7 +185,7 @@ public class AccInterfaceUI implements ActionListener {
         
          try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank", "root", "root");
-            fetchAccountData(accountNumber);
+           
         } catch (Exception e) {
             System.out.print(e);
         }
@@ -211,11 +216,12 @@ public class AccInterfaceUI implements ActionListener {
         }
         else if(openclass.getSource()==enterBtn)
         {
-            fetchAccountData(accountNumber);
+            fetchAccountData();
         }
     }
   
-   private void fetchAccountData(String accNumber) {
+   private void fetchAccountData() {
+       String accNumber = AccNumtf.getText();
         try {
             String query = "SELECT acc_name, acc_bal FROM transactions WHERE acc_number = ?";
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -224,13 +230,10 @@ public class AccInterfaceUI implements ActionListener {
             if (rs.next()) {
                 String accName = rs.getString("acc_name");
                 String accBal = rs.getString("acc_bal");
-                System.out.println("Account Name: " + accName); 
-                System.out.println("Account Balance: " + accBal);
                 AccNametf.setText(accName);
                 balancetf.setText(accBal);
-                AccNumtf.setText(accNumber);
+             
             } 
-            
         } catch (Exception e) {
            System.out.println(e);
         }

@@ -133,7 +133,7 @@ public class UserLogin implements ActionListener {
         if(Login.getSource() == btnLogin){
            String username = txtfldUsername.getText();
            String password = pwfPassword.getText();
-           if(username.equals("try") && password.equals("catch")){
+           if(username.equals("admin") && password.equals("admin")){
                lblLoginResults.setText("Login Successful!");
            
            f.dispose();
