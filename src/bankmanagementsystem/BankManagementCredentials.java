@@ -150,7 +150,7 @@ public class BankManagementCredentials implements ActionListener {
         cbStatus.setBounds(240, 360, 189, 30);
 
         //buttons
-        btnNextPage = new JButton ("Create");
+        btnNextPage = new JButton ("Next");
         btnNextPage.setBounds(454,164, 92, 30);
         btnNextPage.setFont(new Font("Arial", Font.BOLD, 15));
         btnNextPage.setBackground(new Color(100,50,78));
@@ -236,7 +236,7 @@ public class BankManagementCredentials implements ActionListener {
         {
             try{
                 String query = "INSERT INTO `bank_table`(`LName`,`FName`,`MName`,`Suffix`,`Age`,`Month`,`Day`,"
-                        + "`Year`,`Sex`,`Status`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        + "`Year`,`Sex`,`Status`,`pin`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
           PreparedStatement pr = con.prepareStatement(query);
           
@@ -250,11 +250,15 @@ public class BankManagementCredentials implements ActionListener {
               pr.setString(8,tfYear.getText());
               pr.setObject(9,cbSex.getSelectedItem());
               pr.setObject(10,cbStatus.getSelectedItem());
+              pr.setString(11,"");
               
               pr.executeUpdate();
               
               JOptionPane.showMessageDialog(null,"Registered Successfully");
-              JOptionPane.showMessageDialog(null,"Redirecting to Admin Main Menu...");
+              
+              f.dispose();
+              BankAccountCreation BAC = new BankAccountCreation();
+              //JOptionPane.showMessageDialog(null,"Redirecting to Admin Main Menu...");
           }
        
       
@@ -262,9 +266,6 @@ public class BankManagementCredentials implements ActionListener {
           System.out.println(ex);
       }
     }
-            
-            f.dispose();
-            BankMainMenu load = new BankMainMenu();
 
         }
     }
