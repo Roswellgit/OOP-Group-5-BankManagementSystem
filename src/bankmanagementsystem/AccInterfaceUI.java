@@ -12,7 +12,7 @@ public class AccInterfaceUI implements ActionListener {
     private JPanel panel1, depanel, deposit;
     private JLabel label1, lblInfo, AccNamelbl, AccNumlbl, balancelbl, depoLbl, withLbl, transLbl, pinLbl ;
     private JTextField tfBlank, AccNametf, AccNumtf, balancetf, depotf;
-    private JButton depoBtn, WdrawBtn, transBtn, pinBtn, ReturnBtn, enterBtn;
+    private JButton depoBtn, WdrawBtn, transBtn, ReturnBtn, enterBtn;
     private Connection conn;
     private String accountNumber;
     
@@ -102,12 +102,12 @@ public class AccInterfaceUI implements ActionListener {
         depImage = new ImageIcon("dep.png");
         Image depsize = depImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         depoBtn.setIcon(new ImageIcon(depsize));
-        depoBtn.setBounds(25, 165, 115, 120);
+        depoBtn.setBounds(80, 165, 115, 120);
         depoBtn.addActionListener(this);
         
         //Deposit Lbl
         depoLbl = new JLabel("DEPOSIT");
-        depoLbl.setBounds(25, 290, 115, 20);
+        depoLbl.setBounds(80, 290, 115, 20);
         depoLbl.setHorizontalAlignment(SwingConstants.CENTER);
         depoLbl.setFont(new Font("Arial Black", Font.BOLD, 12));
         
@@ -116,12 +116,12 @@ public class AccInterfaceUI implements ActionListener {
         ImageIcon WdraImage = new ImageIcon("Wdraw.png");
         Image Wdrawsize = WdraImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         WdrawBtn.setIcon(new ImageIcon(Wdrawsize));
-        WdrawBtn.setBounds(150, 165, 115, 120);
+        WdrawBtn.setBounds(220, 165, 115, 120);
         WdrawBtn.addActionListener(this);
         
         //withdraw Lbl
         withLbl = new JLabel("WITHDRAW");
-        withLbl.setBounds(150, 290, 115, 20);
+        withLbl.setBounds(220, 290, 115, 20);
         withLbl.setHorizontalAlignment(SwingConstants.CENTER);
         withLbl.setFont(new Font("Arial Black", Font.BOLD, 12));
         
@@ -130,29 +130,14 @@ public class AccInterfaceUI implements ActionListener {
         ImageIcon transImage = new ImageIcon("Transfer.png");
         Image transize = transImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         transBtn .setIcon(new ImageIcon(transize));
-        transBtn.setBounds(275, 165, 115, 120);
+        transBtn.setBounds(360, 165, 115, 120);
         transBtn.addActionListener(this);
         
         //Transaction Lbl
         transLbl = new JLabel("TRANSACTION");
-        transLbl.setBounds(275, 290, 115, 20);
+        transLbl.setBounds(360, 290, 115, 20);
         transLbl.setHorizontalAlignment(SwingConstants.CENTER);
         transLbl.setFont(new Font("Arial Black", Font.BOLD, 12));
-        
-        
-        //Change Pin
-        pinBtn = new JButton();
-        ImageIcon pinImage = new ImageIcon("Pin.png");
-        Image pinsize = pinImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        pinBtn.setIcon(new ImageIcon(pinsize));
-        pinBtn.setBounds(400, 165, 115, 120);
-        pinBtn.addActionListener(this);
-        
-        //cHANGE PIN Lbl
-        pinLbl = new JLabel("CHANGE PIN");
-        pinLbl.setBounds(400, 290, 115, 20);
-        pinLbl.setHorizontalAlignment(SwingConstants.CENTER);
-        pinLbl.setFont(new Font("Arial Black", Font.BOLD, 12));
         
         //Return
         ReturnBtn = new JButton("RETURN");
@@ -174,12 +159,9 @@ public class AccInterfaceUI implements ActionListener {
         depanel.add(depoLbl);
         depanel.add(WdrawBtn);
         depanel.add(withLbl);
-        depanel.add(transBtn );
-        depanel.add(transLbl );
-        depanel.add(pinBtn);
-        depanel.add(pinLbl);
+        depanel.add(transBtn);
+        depanel.add(transLbl);
         panel1.add(ReturnBtn);
-
         
         Acc.setVisible(true);
         
@@ -210,10 +192,7 @@ public class AccInterfaceUI implements ActionListener {
               Acc.dispose();
             TransactionUI transactionui = new TransactionUI();
         }
-        else if(openclass.getSource()==pinBtn) { 
-              Acc.dispose();
-            ChangePinUI changepinui = new ChangePinUI();
-        }
+
         else if(openclass.getSource()==enterBtn)
         {
             fetchAccountData();
