@@ -12,7 +12,7 @@ public class UserLogin implements ActionListener {
     private JLabel lblLogo, lblBankName, lblWelcome, lblLogin, lblUsername, lblPassword, lblLoginResults;
     private JTextField txtfldUsername;
     private JPasswordField pwfPassword;
-    private JButton btnLogin, btnReset;
+    private JButton btnLogin, btnReset, btnRegister;
     private JCheckBox chShow;
     
     UserLogin(){
@@ -94,16 +94,22 @@ public class UserLogin implements ActionListener {
         
         //enter & clear buttons
         btnLogin = new JButton("Enter");
-        btnLogin.setBounds(200, 370, 80, 20);
+        btnLogin.setBounds(150, 370, 80, 20);
         btnLogin.setFont(new Font("Arial", Font.PLAIN, 13));
         btnLogin.addActionListener(this);
         f.add(btnLogin);
    
         btnReset = new JButton("Clear");
-        btnReset.setBounds(295, 370, 80, 20);
+        btnReset.setBounds(250, 370, 80, 20);
         btnReset.setFont(new Font("Arial", Font.PLAIN, 13));
         btnReset.addActionListener(this);
         f.add(btnReset);
+        
+        btnRegister = new JButton("Sign Up");
+        btnRegister.setBounds(350, 370, 80, 20);
+        btnRegister.setFont(new Font("Arial", Font.PLAIN, 13));
+        btnRegister.addActionListener(this);
+        f.add(btnRegister);
         
         chShow = new JCheckBox();
         chShow.setBounds(430,275,30,20);
