@@ -233,6 +233,7 @@ public class BankManagementCredentials implements ActionListener {
             cbStatus.setSelectedIndex(0);
         }
         else if(openclass.getSource()==btnNextPage)
+           
         {
             try{
                 String query = "INSERT INTO `bank_table`(`LName`,`FName`,`MName`,`Suffix`,`Age`,`Month`,`Day`,"
@@ -250,11 +251,11 @@ public class BankManagementCredentials implements ActionListener {
               pr.setString(8,tfYear.getText());
               pr.setObject(9,cbSex.getSelectedItem());
               pr.setObject(10,cbStatus.getSelectedItem());
-              pr.setString(11,"");
+              pr.setString(11,"0000");
               
               pr.executeUpdate();
               
-              JOptionPane.showMessageDialog(null,"Registered Successfully");
+              JOptionPane.showMessageDialog(null,"Registered Successfully.");
               
               f.dispose();
               BankAccountCreation BAC = new BankAccountCreation();

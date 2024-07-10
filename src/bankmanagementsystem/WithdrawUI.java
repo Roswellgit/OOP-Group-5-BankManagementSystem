@@ -133,7 +133,10 @@ public class WithdrawUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent close) {
         if (close.getSource() == ExitBtn) {
+            
             BankMainMenu bankmainmenu = new BankMainMenu();
+            Acc.dispose();
+            
         } else if (close.getSource() == WdrawBtn) {
             Withdraw();
         }

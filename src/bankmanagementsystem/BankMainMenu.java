@@ -9,9 +9,9 @@ public class BankMainMenu implements ActionListener {
     //frame
     private JFrame f = new JFrame ("MAIN MENU");
     private JPanel header, middle;
-    private ImageIcon Logo, Profile, Info, Transactions, BgColor;
-    private JLabel lblLogo, lblBankName, lblDescription, lblProfile, lblUserInfo, lblTransactions;
-    private JButton btnNewAcc, btnUserInfo, btnTransactions, btnReturn;
+    private ImageIcon Logo, Profile, Profile2, Info, Transactions, BgColor;
+    private JLabel lblLogo, lblBankName, lblDescription, lblProfile, lblProfile2, lblUserInfo, lblTransactions;
+    private JButton btnNewAcc, btnUserInfo, btnTransactions, btnAdminInfo, btnReturn;
     
     BankMainMenu(){
         
@@ -49,7 +49,7 @@ public class BankMainMenu implements ActionListener {
         
         //Where do u want to go label
         lblDescription = new JLabel("Where would you like to go?");
-        lblDescription.setBounds(50,130,200,30);
+        lblDescription.setBounds(50,130,300,30);
         lblDescription.setFont(new Font("Aptos", Font.BOLD, 15));
         lblDescription.setVisible(true);
         
@@ -63,36 +63,46 @@ public class BankMainMenu implements ActionListener {
         //button logos
         Profile = new ImageIcon("PROFILELOGO.png");
         lblProfile = new JLabel(Profile);
-        lblProfile.setBounds(160,210,40,40);
+        lblProfile.setBounds(160,240,40,40);
+        
+        Profile2 = new ImageIcon("PROFILELOGO.png");
+        lblProfile2 = new JLabel(Profile2);
+        lblProfile2.setBounds(160,180,40,40);
 
         //Info logo for button
         Info = new ImageIcon("userinfo.png");
         lblUserInfo = new JLabel(Info);
-        lblUserInfo.setBounds(160,270,40,40);
+        lblUserInfo.setBounds(160,300,40,40);
         
         //Transac logo for button
         Transactions = new ImageIcon("transactions.png");
         lblTransactions = new JLabel(Transactions);
-        lblTransactions.setBounds(160,330,40,40);
+        lblTransactions.setBounds(160,360,40,40);
 
         //buttons
         btnNewAcc = new JButton("Create New User Account");
-        btnNewAcc.setBounds(210,210, 215,40);
+        btnNewAcc.setBounds(210,240,215,35);
         btnNewAcc.setFont(new Font("Arial", Font.BOLD, 14));
         btnNewAcc.setFocusable(false);
         btnNewAcc.addActionListener(this);
         
         btnUserInfo = new JButton("View User Information");
-        btnUserInfo.setBounds(210,270, 215,40);
+        btnUserInfo.setBounds(210,300,215,35);
         btnUserInfo.setFont(new Font("Arial", Font.BOLD, 15));
         btnUserInfo.setFocusable(false);
         btnUserInfo.addActionListener(this);
         
         btnTransactions = new JButton("Process Transactions");
-        btnTransactions.setBounds(210,330, 215,40);
+        btnTransactions.setBounds(210,360,215,35);
         btnTransactions.setFont(new Font("Arial", Font.BOLD, 15));
         btnTransactions.setFocusable(false);
         btnTransactions.addActionListener(this);
+        
+        btnAdminInfo = new JButton("View Admin Information");
+        btnAdminInfo.setBounds(210,180,215,35);
+        btnAdminInfo.setFont(new Font("Arial", Font.BOLD, 15));
+        btnAdminInfo.setFocusable(false);
+        btnAdminInfo.addActionListener(this);
         
         btnReturn = new JButton("RETURN");
         btnReturn.setBounds(240, 437, 100, 25);
@@ -109,10 +119,12 @@ public class BankMainMenu implements ActionListener {
         f.add(lblDescription);
         
         f.add(lblProfile);
+        f.add(lblProfile2);
         f.add(lblUserInfo);
         f.add(lblTransactions);
         f.add(btnNewAcc);
         f.add(btnUserInfo);
+        f.add(btnAdminInfo);
         f.add(btnTransactions);
         f.add(btnReturn);
         f.add(middle);
@@ -121,23 +133,35 @@ public class BankMainMenu implements ActionListener {
     }
     
     @Override 
-    public void actionPerformed(ActionEvent openclass) {
+    public void actionPerformed(ActionEvent openclass)
+    {
         
-        if(openclass.getSource()==btnNewAcc) {
+        if(openclass.getSource()==btnNewAcc)
+        {
             f.dispose();
             BankManagementCredentials bankmanagementcredentials = new BankManagementCredentials();
         }
         
-        else if(openclass.getSource()==btnUserInfo) {
+        else if(openclass.getSource()==btnUserInfo)
+        {
             f.dispose();
             BankRecords bankrecords = new BankRecords();
         }
         
-        else if(openclass.getSource()==btnTransactions) {
+        else if(openclass.getSource()==btnTransactions)
+        {
             f.dispose();
             AccInterfaceUI accinterfaceUI = new AccInterfaceUI();
         }
-        else if(openclass.getSource()==btnReturn) {
+        
+        else if(openclass.getSource()==btnAdminInfo)
+        {
+            f.dispose();
+            AdminRecords admin = new AdminRecords();
+        }
+        
+        else if(openclass.getSource()==btnReturn)
+        {
             f.dispose();
             UserLogin userlogin = new UserLogin();
         }

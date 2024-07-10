@@ -108,7 +108,9 @@ catch(Exception ex){
     @Override
     public void actionPerformed(ActionEvent close) {
         if(close.getSource() == ExitBtn) {
+           
             Acc.dispose();
+            BankMainMenu u = new BankMainMenu();
         }
     }
 }

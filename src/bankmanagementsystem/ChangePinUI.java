@@ -30,6 +30,7 @@ public class ChangePinUI implements ActionListener {
         // logo
         BgColor = new ImageIcon("logo.png");
         Acc.setIconImage(BgColor.getImage());
+        
         Acc.getContentPane().setBackground(new Color(100,50,78));
         Acc.setLayout(new BorderLayout());
         
@@ -134,12 +135,15 @@ public class ChangePinUI implements ActionListener {
         
         if (strOldPin.isEmpty() || strNewPin.isEmpty() || strConfirmNewPin.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill in every required field.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            return;
         }
         if (!strNewPin.equals(strConfirmNewPin)) {
             JOptionPane.showMessageDialog(null, "Your new pin and re-entered new pin do not match. Please try again.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            return;
         }
         if (!strNewPin.matches("\\d{4}")) {
         JOptionPane.showMessageDialog(null, "New pin must be a 4-digit number.");
+        return;
         }
         
         try{

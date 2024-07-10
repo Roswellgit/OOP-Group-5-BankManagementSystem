@@ -177,7 +177,11 @@ public class BankAccountCreation implements ActionListener {
               
               pr.executeUpdate();
               
-              JOptionPane.showMessageDialog(null,"Registered Successfully");
+              JOptionPane.showMessageDialog(null, rng);
+              JOptionPane.showMessageDialog(null,"Registered Successfully." + "\n"
+                      + "Your username is: " + tfUserName.getText() + "\n" +
+                      "Pin number: " + rng + "\n" +
+                      "Account Balance: 0");
               JOptionPane.showMessageDialog(null,"Redirecting to Admin Main Menu...");
             }
             catch(Exception ex)

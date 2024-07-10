@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
     
-public class UserLogin implements ActionListener {
+public class AdminRegister extends JFrame implements ActionListener {
     
     private JFrame f = new JFrame ("BANK OF BSIT");
     private JPanel header, middle;
@@ -13,11 +13,10 @@ public class UserLogin implements ActionListener {
     private JLabel lblLogo, lblBankName, lblWelcome, lblLogin, lblUsername, lblPassword, lblLoginResults;
     private JTextField txtfldUsername;
     private JPasswordField pwfPassword;
-    private JButton btnLogin, btnReset, btnRegister;
+    private JButton btnCreate, btnReset, btnBack;
     private JCheckBox chShow;
     
-    UserLogin()
-    {
+    AdminRegister(){
         
         f.setSize(600,510);
         f.setLayout(null);
@@ -58,14 +57,14 @@ public class UserLogin implements ActionListener {
         f.getContentPane().add(lblLogo);
         
         //Welcome & pls login txt lbls
-        lblWelcome = new JLabel("Welcome Back Admin!");
-        lblWelcome.setBounds(50,130,200,30);
+        lblWelcome = new JLabel("Create a new account.", SwingConstants.CENTER);
+        lblWelcome.setBounds(0,130,610,30);
         lblWelcome.setFont(new Font("Arial", Font.BOLD, 18));
         lblWelcome.setVisible(true);
         f.add(lblWelcome);
         
-        lblLogin = new JLabel("Please log in to continue.");
-        lblLogin.setBounds(50,160,200,30);
+        lblLogin = new JLabel("Please enter a username and password.");
+        lblLogin.setBounds(50,160,400,30);
         lblLogin.setFont(new Font("Arial", Font.PLAIN, 15));
         lblLogin.setVisible(true);
         f.add(lblLogin);
@@ -95,11 +94,11 @@ public class UserLogin implements ActionListener {
         
         
         //enter & clear buttons
-        btnLogin = new JButton("Enter");
-        btnLogin.setBounds(150, 370, 80, 20);
-        btnLogin.setFont(new Font("Arial", Font.PLAIN, 13));
-        btnLogin.addActionListener(this);
-        f.add(btnLogin);
+        btnCreate = new JButton("Create");
+        btnCreate.setBounds(150, 370, 80, 20);
+        btnCreate.setFont(new Font("Arial", Font.PLAIN, 13));
+        btnCreate.addActionListener(this);
+        f.add(btnCreate);
    
         btnReset = new JButton("Clear");
         btnReset.setBounds(250, 370, 80, 20);
@@ -107,11 +106,11 @@ public class UserLogin implements ActionListener {
         btnReset.addActionListener(this);
         f.add(btnReset);
         
-        btnRegister = new JButton("Sign Up");
-        btnRegister.setBounds(350, 370, 80, 20);
-        btnRegister.setFont(new Font("Arial", Font.PLAIN, 13));
-        btnRegister.addActionListener(this);
-        f.add(btnRegister);
+        btnBack = new JButton("Back");
+        btnBack.setBounds(350, 370, 80, 20);
+        btnBack.setFont(new Font("Arial", Font.PLAIN, 13));
+        btnBack.addActionListener(this);
+        f.add(btnBack);
         
         chShow = new JCheckBox();
         chShow.setBounds(430,275,30,20);
@@ -137,36 +136,40 @@ public class UserLogin implements ActionListener {
     }
     
     @Override
-    public void actionPerformed(ActionEvent Login)
+    public void actionPerformed(ActionEvent Login) 
     {
-        if(Login.getSource() == btnLogin)
+        if(Login.getSource() == btnCreate)
         {
-           if(Login.getSource()==btnLogin)
+            if(Login.getSource()==btnCreate)
             {
-               try
+                
+                try
                 {
-                    String query =  "SELECT username, password from admin WHERE username=? and password=?";
+                    String query = "INSERT INTO `admin`(`username`,`password`) VALUES (?,?)";
                     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
-                    PreparedStatement pst = con.prepareStatement(query);
-   
-                    pst.setString(1,txtfldUsername.getText());
-                    pst.setString(2, pwfPassword.getText());
-                    ResultSet rs = pst.executeQuery();
-           
+                    PreparedStatement pr = con.prepareStatement(query);
+          
+                    pr.setString(1,txtfldUsername.getText());
+                    pr.setString(2,pwfPassword.getText());
+                    pr.executeUpdate();
+              
+                    JOptionPane.showMessageDialog(null,"Registered Successfully.");
+              
                     f.dispose();
-                    BankMainMenu bankmainmenu = new BankMainMenu();
+                    UserLogin log = new UserLogin();
                 }
-               
-               catch(Exception ex)
+            
+                catch(Exception ex)
                 {
-                    JOptionPane.showMessageDialog(null,ex);
+                    System.out.println(ex);
                 }
             }
-           
+        
             else
             {
-                lblLoginResults.setText("Login Failed. Please Try Again");
-            }      
+                lblLoginResults.setText("Account Creation Failed. Please Try Again.");
+            }
+           
            
         }
         
@@ -174,7 +177,8 @@ public class UserLogin implements ActionListener {
         {
             txtfldUsername.setText("");
             pwfPassword.setText("");
-            lblLoginResults.setText("");
+            lblLoginResults.setText("");     
+           
         }      
         
         else if(Login.getSource()==chShow)
@@ -187,11 +191,6 @@ public class UserLogin implements ActionListener {
             {
                 pwfPassword.setEchoChar('•');
             }
-        }
-        
-        else if(Login.getSource()==btnRegister)
-        {
-            new AdminRegister().setVisible(true);
         }
     }
 }

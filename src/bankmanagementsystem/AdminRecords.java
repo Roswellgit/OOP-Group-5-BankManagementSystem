@@ -9,7 +9,8 @@ import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.*;
         
-public class BankRecords implements ActionListener {
+public class AdminRecords implements ActionListener
+{
     
     private JFrame f;
     private ImageIcon BgColor;
@@ -22,7 +23,8 @@ public class BankRecords implements ActionListener {
     private JTableHeader tableheader;
    
     
-    public BankRecords() {
+    public AdminRecords()
+    {
         
         //frame
         f = new JFrame();
@@ -63,7 +65,7 @@ public class BankRecords implements ActionListener {
         panel1.add(depanel, BorderLayout.CENTER);
         
         //create table
-        ColumnHeaders = new DefaultTableModel(new Object[]{"ID","Last Name","First Name","Middle Name","Suffix","Age","Month","Day","Year","Sex","Status"}, 0);
+        ColumnHeaders = new DefaultTableModel(new Object[]{"UserName","Password"}, 0);
         records = new JTable(ColumnHeaders);
         records.setOpaque(false);
 
@@ -79,38 +81,32 @@ public class BankRecords implements ActionListener {
         depanel.add(spScroll);
         
 
-        try{
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
+        try
+        {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
     
-    Statement st = con.createStatement();
+            Statement st = con.createStatement();
     
-    String q =  "SELECT * FROM bank_table";
-    ResultSet rs = st.executeQuery(q);
+            String q =  "SELECT * FROM admin";
+            ResultSet rs = st.executeQuery(q);
     
-    while(rs.next()){
-        String id = rs.getString("idbank_table");
-        String lname = rs.getString("LName");
-        String fname = rs.getString("FName");
-        String mname = rs.getString("Mname");
-        String suf= rs.getString("Suffix");
-        String age = rs.getString("Age");
-        String mon = rs.getString("Month");
-        String d = rs.getString("Day");
-        String y = rs.getString("Year");
-        String se = rs.getString("Sex");
-        String set = rs.getString("Status");
+            while(rs.next())
+            {
+                String UM = rs.getString("username");
+                String PW = rs.getString("password");
         
-        String tbData[] = {id,lname,fname,mname,suf,age,mon,d,y,se,set};
-        DefaultTableModel record = (DefaultTableModel)records.getModel();
+                String tbData[] = {UM,PW};
+                DefaultTableModel record = (DefaultTableModel)records.getModel();
         
-        record.addRow(tbData);
+                record.addRow(tbData);
+            }
+            con.close();
+        }
         
-    }
-    con.close();
-}
-catch(Exception ex){
-    System.out.println(ex);
-}
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+        }
 
         
         //Return
@@ -126,8 +122,10 @@ catch(Exception ex){
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==ReturnBtn) {
+    public void actionPerformed(ActionEvent e)
+    {
+        if(e.getSource()==ReturnBtn)
+        {
             f.dispose();
             BankMainMenu bankmainmenu = new BankMainMenu();
         }
