@@ -236,6 +236,7 @@ public class BankManagementCredentials implements ActionListener {
            
         {
             try{
+                int rng = (int)(Math.random()*9999)+5;
                 String query = "INSERT INTO `bank_table`(`LName`,`FName`,`MName`,`Suffix`,`Age`,`Month`,`Day`,"
                         + "`Year`,`Sex`,`Status`,`pin`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_bank","root","root");
@@ -251,10 +252,12 @@ public class BankManagementCredentials implements ActionListener {
               pr.setString(8,tfYear.getText());
               pr.setObject(9,cbSex.getSelectedItem());
               pr.setObject(10,cbStatus.getSelectedItem());
-              pr.setString(11,"0000");
+              pr.setInt(11,rng);
               
               pr.executeUpdate();
               
+              JOptionPane.showMessageDialog(null,"Your pin number is: " + rng + "\n" + 
+                      "Please take note of this.");
               JOptionPane.showMessageDialog(null,"Registered Successfully.");
               
               f.dispose();

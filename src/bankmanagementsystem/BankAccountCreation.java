@@ -132,9 +132,9 @@ public class BankAccountCreation implements ActionListener {
         
         f.add(lblInfo);
         f.add(lblUserName);
-        f.add(lblAccNum);
+        //f.add(lblAccNum);
         f.add(tfUserName);
-        f.add(tfAccNum);
+        //f.add(tfAccNum);
         f.add(btnNextPage);
         f.add(btnReset);
         f.add(btnReturn);
@@ -177,10 +177,9 @@ public class BankAccountCreation implements ActionListener {
               
               pr.executeUpdate();
               
-              JOptionPane.showMessageDialog(null, rng);
               JOptionPane.showMessageDialog(null,"Registered Successfully." + "\n"
                       + "Your username is: " + tfUserName.getText() + "\n" +
-                      "Pin number: " + rng + "\n" +
+                      "Account number: " + rng + "\n" +
                       "Account Balance: 0");
               JOptionPane.showMessageDialog(null,"Redirecting to Admin Main Menu...");
             }
