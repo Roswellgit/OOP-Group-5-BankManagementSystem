@@ -141,7 +141,7 @@ public class AccInterfaceUI implements ActionListener {
         
         //Acc records Btn
         AccInfobtn = new JButton();
-        ImageIcon InfoImage = new ImageIcon("PROFILELOGO.png");
+        ImageIcon InfoImage = new ImageIcon("AccInfoFinal.png");
         Image Infosize = InfoImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         AccInfobtn .setIcon(new ImageIcon(Infosize));
         AccInfobtn.setBounds(420, 165, 100, 105);

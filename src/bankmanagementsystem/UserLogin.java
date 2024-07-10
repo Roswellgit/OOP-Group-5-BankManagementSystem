@@ -92,8 +92,6 @@ public class UserLogin implements ActionListener {
         pwfPassword.setFont(new Font("Arial", Font.PLAIN, 14));
         f.add(pwfPassword);
         
-        
-        
         //enter & clear buttons
         btnLogin = new JButton("Enter");
         btnLogin.setBounds(150, 370, 80, 20);
